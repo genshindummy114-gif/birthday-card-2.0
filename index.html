@@ -6,17 +6,17 @@
 <title>Happy Birthday, Ikra</title>
 <style>
   :root{
-    --void:#0a0616;
-    --deep:#160b2e;
-    --panel:#1c0f36cc;
-    --cryo:#b083ff;
-    --cryo-bright:#efd9ff;
-    --cryo-deep:#5a2f9e;
-    --frost:#cbb0e8;
-    --gold:#e8c97a;
-    --line:#6b459c;
-    --cryo-rgb:176,131,255;
-    --cryo-bright-rgb:239,217,255;
+    --void: #fdf6f9;          /* softest blush white */
+    --deep: #ffffff;          /* pure white */
+    --panel: rgba(255, 240, 245, 0.75);
+    --cryo: #ff8eb5;          /* main pink */
+    --cryo-bright: #ffe4ed;   /* baby pink */
+    --cryo-deep: #b34a6e;     /* deep rose */
+    --frost: #a66a7e;         /* soft mauve */
+    --gold: #ffd1dc;          /* rose-gold */
+    --line: #e0b3c4;          /* dusty pink */
+    --cryo-rgb: 255,142,181;
+    --cryo-bright-rgb: 255,228,237;
   }
   *{box-sizing:border-box;}
   html,body{
@@ -24,10 +24,6 @@
     background:var(--void);
     overflow-x:hidden;
     font-family:'Segoe UI',-apple-system,sans-serif;
-  }
-  @font-face{
-    font-family:'DisplaySerif';
-    src:local('Cinzel'),local('Georgia');
   }
   #stage{
     position:relative;
@@ -37,14 +33,16 @@
     justify-content:center;
     padding:40px 16px;
   }
-  canvas#snow{
+  
+  /* Floating rose petals */
+  canvas#petals{
     position:fixed;inset:0;
     width:100%;height:100%;
     z-index:0;pointer-events:none;
   }
   .vignette{
     position:fixed;inset:0;
-    background:radial-gradient(ellipse at center, transparent 30%, var(--void) 92%);
+    background:radial-gradient(ellipse at center, transparent 40%, rgba(255,200,210,0.2) 100%);
     z-index:1;pointer-events:none;
   }
   .rays{
@@ -52,13 +50,10 @@
     z-index:0;pointer-events:none;
     background:
       conic-gradient(from 0deg at 50% 40%,
-        transparent 0deg, rgba(var(--cryo-rgb),0.05) 3deg, transparent 8deg,
-        transparent 40deg, rgba(var(--cryo-rgb),0.04) 43deg, transparent 50deg,
-        transparent 100deg, rgba(var(--cryo-rgb),0.05) 104deg, transparent 112deg,
-        transparent 180deg, rgba(var(--cryo-rgb),0.04) 184deg, transparent 190deg,
-        transparent 260deg, rgba(var(--cryo-rgb),0.05) 264deg, transparent 270deg);
+        transparent 0deg, rgba(255,142,181,0.03) 3deg, transparent 8deg,
+        transparent 40deg, rgba(255,142,181,0.02) 43deg, transparent 50deg);
     animation:spin 60s linear infinite;
-    opacity:.7;
+    opacity:.5;
   }
   @keyframes spin{to{transform:rotate(360deg);}}
 
@@ -93,79 +88,34 @@
     vertical-align:middle;
   }
 
-  /* VISION */
-  .vision-wrap{
+  /* GIF CONTAINER */
+  .gif-container{
     position:relative;
-    width:180px;height:180px;
-    margin:0 auto 6px;
-    cursor:pointer;
-  }
-  .vision-wrap:active{transform:scale(.97);}
-  .ring{
-    position:absolute;inset:0;
+    width:160px; height:160px;
+    margin:0 auto 10px;
     border-radius:50%;
-    border:1px solid var(--line);
-    opacity:.55;
+    background:rgba(255,255,255,0.8);
+    box-shadow:0 0 40px rgba(255,142,181,0.2), 0 0 80px rgba(255,142,181,0.1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid var(--line);
+    overflow:hidden;
   }
-  .ring.r1{animation:spin 18s linear infinite;}
-  .ring.r2{inset:14px; animation:spin 26s linear infinite reverse; border-style:dashed;}
-  .ring.r3{inset:28px; border-color:var(--cryo-deep); opacity:.4;}
-
-  .glow{
-    position:absolute; inset:36px;
+  .gif-container img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
     border-radius:50%;
-    background:radial-gradient(circle, rgba(var(--cryo-rgb),.55), rgba(var(--cryo-rgb),0) 70%);
-    filter:blur(6px);
-    animation:pulse 3.2s ease-in-out infinite;
   }
-  @keyframes pulse{
-    0%,100%{opacity:.55; transform:scale(1);}
-    50%{opacity:1; transform:scale(1.12);}
-  }
-
-  .gem{
-    position:absolute; inset:52px;
-    clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background:
-      linear-gradient(155deg, var(--cryo-bright) 0%, var(--cryo) 40%, var(--cryo-deep) 78%, #2a1350 100%);
-    box-shadow:
-      0 0 24px rgba(var(--cryo-rgb),.85),
-      0 0 60px rgba(var(--cryo-rgb),.35),
-      inset 0 0 14px rgba(255,255,255,.6);
-    animation:gemSpin 8s ease-in-out infinite;
-  }
-  @keyframes gemSpin{
-    0%,100%{transform:rotate(0deg) scale(1);}
-    50%{transform:rotate(4deg) scale(1.04);}
-  }
-  .gem::after{
-    content:'';
-    position:absolute; inset:0;
-    clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background:linear-gradient(200deg, rgba(255,255,255,.65), transparent 45%);
-    mix-blend-mode:screen;
-  }
-  .sparkle{
-    position:absolute; inset:0;
-    animation:spin 40s linear infinite;
-  }
-  .sparkle span{
-    position:absolute;
-    width:4px;height:4px;
-    background:var(--cryo-bright);
+  .ring-gif{
+    position:absolute;inset:-4px;
     border-radius:50%;
-    box-shadow:0 0 6px 2px rgba(var(--cryo-bright-rgb),.9);
-    animation:twinkle 2.4s ease-in-out infinite;
-  }
-
-  .hint{
-    font-size:10px;
-    letter-spacing:.2em;
-    color:var(--frost);
-    opacity:.5;
-    text-transform:uppercase;
-    margin-top:10px;
-    animation:fadeIn 1s ease 1.4s both;
+    border:1px solid var(--cryo);
+    opacity:.4;
+    animation:spin 18s linear infinite;
+    pointer-events:none;
   }
 
   h1.name{
@@ -173,12 +123,15 @@
     font-weight:700;
     letter-spacing:.06em;
     font-size:clamp(40px,9vw,64px);
-    margin:22px 0 4px;
-    background:linear-gradient(180deg, #ffffff 0%, var(--cryo-bright) 45%, var(--cryo) 100%);
+    margin:12px 0 4px;
+    background:linear-gradient(180deg, #ffffff 0%, #ffd1dc 45%, #ff8eb5 100%);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
-    text-shadow:0 0 40px rgba(var(--cryo-rgb),.35);
+    text-shadow:0 0 30px rgba(255,142,181,0.2);
+    /* BLACK STROKE */
+    -webkit-text-stroke: 1.5px #000000;
+    text-stroke: 1.5px #000000;
     opacity:0;
     animation:fadeIn 1s ease .9s forwards;
   }
@@ -191,25 +144,22 @@
     animation:fadeIn 1s ease 1.1s forwards;
   }
   @keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
-  @keyframes twinkle{0%,100%{opacity:.2; transform:scale(.6);} 50%{opacity:1; transform:scale(1.3);}}
 
-  /* STAT / CONSTELLATION PANEL */
+  /* STAT / PANEL */
   .panel{
     position:relative;
-    background:linear-gradient(160deg, var(--panel), #08152699);
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(8px);
     border:1px solid var(--line);
-    border-radius:4px;
+    border-radius:12px;
     padding:26px 22px 22px;
-    backdrop-filter:blur(6px);
-    opacity:0;
-    animation:fadeIn 1s ease 1.5s forwards;
-    box-shadow:0 0 40px rgba(0,0,0,.4), inset 0 0 30px rgba(var(--cryo-rgb),.04);
+    box-shadow:0 4px 30px rgba(255,142,181,0.08);
   }
   .panel::before,.panel::after{
     content:'';
     position:absolute; width:14px; height:14px;
     border:1px solid var(--cryo);
-    opacity:.7;
+    opacity:.5;
   }
   .panel::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
   .panel::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
@@ -237,23 +187,26 @@
     font-size:10px;
     letter-spacing:.18em;
     color:var(--frost);
-    opacity:.65;
+    opacity:.7;
     text-transform:uppercase;
     margin-bottom:6px;
   }
   .stat .value{
     font-family:Georgia,serif;
     font-size:22px;
-    color:var(--cryo-bright);
-    text-shadow:0 0 16px rgba(var(--cryo-rgb),.5);
+    color:var(--cryo-deep);
+    /* BLACK STROKE for stat values */
+    -webkit-text-stroke: 0.5px #000000;
+    text-stroke: 0.5px #000000;
   }
 
+  /* WISH BOX (Hidden initially) */
   .wish{
     border-top:1px solid var(--line);
     padding-top:18px;
     font-size:15px;
     line-height:1.75;
-    color:#dcecf7;
+    color:#6b3b4c;
     max-height:0;
     overflow:hidden;
     opacity:0;
@@ -263,7 +216,12 @@
     max-height:400px;
     opacity:1;
   }
-  .wish b{color:var(--cryo-bright);}
+  .wish b{
+    color:var(--cryo-deep);
+    /* BLACK STROKE for bold text inside wish */
+    -webkit-text-stroke: 0.3px #000000;
+    text-stroke: 0.3px #000000;
+  }
   .signoff{
     margin-top:14px;
     font-size:12px;
@@ -279,50 +237,61 @@
     letter-spacing:.3em;
     text-transform:uppercase;
     color:var(--frost);
-    opacity:.4;
+    opacity:.5;
     animation:fadeIn 1s ease 1.7s forwards;
     opacity:0;
+  }
+
+  /* A MESSAGE FROM ASHFANTASTIC BUTTON */
+  .surprise-trigger-btn{
+    margin-top:20px;
+    padding:14px 36px;
+    border-radius:999px;
+    border:1px solid var(--cryo);
+    background:linear-gradient(160deg, var(--cryo-bright), var(--cryo));
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    cursor:pointer;
+    box-shadow:0 6px 30px rgba(255,142,181,0.3);
+    transition:all .3s ease;
+    opacity:0;
+    animation:fadeIn 1s ease 2s forwards;
+    position:relative;
+    z-index:3;
+  }
+  .surprise-trigger-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 40px rgba(255,142,181,0.4);
+    border-color:var(--cryo-deep);
+  }
+  .surprise-trigger-btn:active{
+    transform:scale(.95);
+  }
+  .surprise-trigger-btn.hidden{
+    opacity:0;
+    transform:scale(.9);
+    pointer-events:none;
+    transition:all .4s ease;
   }
 
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important;}
   }
 
-  /* SMALL PHONE SCREENS (Android etc.) */
   @media (max-width:480px){
     #stage{padding:88px 12px 100px;}
-
-    .music-btn, .vision-select-btn{
-      padding:9px 14px;
-      font-size:11px;
-      gap:6px;
-      top:14px;
-    }
+    .music-btn, .game-btn{padding:9px 14px; font-size:11px; gap:6px; top:14px;}
     .music-btn{left:14px;}
-    .vision-select-btn{right:14px;}
-
-    .vision-panel{
-      top:64px;
-      right:14px;
-      width:min(200px, calc(100vw - 28px));
-    }
-
-    .bottom-actions{
-      bottom:calc(12px + env(safe-area-inset-bottom, 0px));
-      gap:8px;
-    }
-    .memories-btn, .critter-btn{
-      padding:9px 14px;
-      font-size:11px;
-      gap:6px;
-    }
+    .game-btn{right:14px;}
+    .bottom-actions{bottom:calc(12px + env(safe-area-inset-bottom, 0px)); gap:8px;}
+    .memories-btn, .critter-btn{padding:9px 14px; font-size:11px; gap:6px;}
+    .surprise-trigger-btn{padding:12px 28px; font-size:14px;}
   }
-
   @media (max-width:360px){
-    .memories-btn, .critter-btn{
-      padding:8px 11px;
-      font-size:10px;
-    }
+    .memories-btn, .critter-btn{padding:8px 11px; font-size:10px;}
   }
 
   /* BALLOONS */
@@ -334,14 +303,14 @@
     border-radius:50% 50% 50% 50% / 58% 58% 42% 42%;
     z-index:6;
     pointer-events:none;
-    box-shadow:inset -8px -8px 14px rgba(0,0,0,.18), inset 6px 8px 14px rgba(255,255,255,.35);
+    box-shadow:inset -8px -8px 14px rgba(0,0,0,.05), inset 6px 8px 14px rgba(255,255,255,.5);
   }
   .balloon::before{
     content:'';
     position:absolute;
     left:50%; top:100%;
     width:1px; height:60px;
-    background:linear-gradient(rgba(255,255,255,.5), transparent);
+    background:linear-gradient(rgba(255,255,255,.3), transparent);
     transform:translateX(-50%);
   }
   .balloon::after{
@@ -365,7 +334,10 @@
     font-size:clamp(28px,6vw,46px);
     letter-spacing:.08em;
     color:var(--cryo-bright);
-    text-shadow:0 0 30px rgba(var(--cryo-rgb),.9), 0 0 60px rgba(var(--cryo-rgb),.5);
+    text-shadow:0 0 30px rgba(255,142,181,0.9), 0 0 60px rgba(255,142,181,0.5);
+    /* BLACK STROKE for burst title */
+    -webkit-text-stroke: 1.2px #000000;
+    text-stroke: 1.2px #000000;
     z-index:8;
     pointer-events:none;
     opacity:0;
@@ -379,10 +351,10 @@
     100%{opacity:0; transform:translate(-50%,-58%) scale(.96) rotate(0deg);}
   }
 
-  /* LIGHTNING FLASH */
+  /* FLASH */
   .flash{
     position:fixed; inset:0;
-    background:radial-gradient(circle at 50% 42%, rgba(var(--cryo-bright-rgb),.9), rgba(var(--cryo-rgb),.25) 40%, transparent 70%);
+    background:radial-gradient(circle at 50% 42%, rgba(255,228,237,0.8), rgba(255,142,181,0.2) 40%, transparent 70%);
     z-index:7;
     pointer-events:none;
     opacity:0;
@@ -396,7 +368,7 @@
     100%{opacity:0;}
   }
 
-  /* BOTTOM ACTION BAR (Memories / Cat / Dog / Frog) */
+  /* BOTTOM ACTION BAR */
   .bottom-actions{
     position:fixed;
     left:0;
@@ -411,180 +383,37 @@
     padding:0 12px;
   }
 
-  /* MEMORIES BUTTON */
-  .memories-btn{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    padding:12px 22px;
-    background:linear-gradient(160deg, #1c0f36e6, #120826e6);
-    border:1px solid var(--line);
-    border-radius:999px;
-    color:var(--cryo-bright);
-    font-size:12px;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    cursor:pointer;
-    backdrop-filter:blur(6px);
-    box-shadow:0 0 24px rgba(var(--cryo-rgb),.25), inset 0 0 12px rgba(var(--cryo-rgb),.08);
-    transition:box-shadow .3s ease, transform .3s ease, border-color .3s ease;
-    opacity:0;
-    animation:fadeIn 1s ease 1.9s forwards;
-  }
-  .memories-btn:hover{
-    box-shadow:0 0 34px rgba(var(--cryo-rgb),.5), inset 0 0 16px rgba(var(--cryo-rgb),.15);
-    border-color:var(--cryo);
-    transform:translateY(-2px);
-  }
-  .memories-btn .diamond{
-    width:9px;height:9px;
-    background:linear-gradient(155deg, var(--cryo-bright), var(--cryo-deep));
-    transform:rotate(45deg);
-    box-shadow:0 0 8px rgba(var(--cryo-rgb),.8);
-    flex-shrink:0;
-  }
-
-  /* VISION SELECT BUTTON */
-  .vision-select-btn{
-    position:fixed;
-    top:22px;
-    right:22px;
-    z-index:12;
+  /* BUTTONS */
+  .memories-btn, .critter-btn, .music-btn, .game-btn{
     display:flex;
     align-items:center;
     gap:9px;
     padding:12px 20px;
-    background:linear-gradient(160deg, #1c0f36e6, #120826e6);
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(6px);
     border:1px solid var(--line);
     border-radius:999px;
-    color:var(--cryo-bright);
+    color:var(--cryo-deep);
     font-size:12px;
     letter-spacing:.18em;
     text-transform:uppercase;
     cursor:pointer;
-    backdrop-filter:blur(6px);
-    box-shadow:0 0 24px rgba(var(--cryo-rgb),.25), inset 0 0 12px rgba(var(--cryo-rgb),.08);
+    box-shadow:0 4px 20px rgba(255,142,181,0.1);
     transition:box-shadow .3s ease, transform .3s ease, border-color .3s ease;
     opacity:0;
     animation:fadeIn 1s ease 1.9s forwards;
   }
-  .vision-select-btn:hover{
-    box-shadow:0 0 34px rgba(var(--cryo-rgb),.5), inset 0 0 16px rgba(var(--cryo-rgb),.15);
+  .memories-btn:hover, .critter-btn:hover, .music-btn:hover, .game-btn:hover{
+    box-shadow:0 0 30px rgba(255,142,181,0.2);
     border-color:var(--cryo);
     transform:translateY(-2px);
   }
-  .vision-select-btn .diamond{
+  .memories-btn .diamond, .critter-btn .diamond, .music-btn .diamond, .game-btn .diamond{
     width:9px;height:9px;
     background:linear-gradient(155deg, var(--cryo-bright), var(--cryo-deep));
     transform:rotate(45deg);
-    box-shadow:0 0 8px rgba(var(--cryo-rgb),.8);
+    box-shadow:0 0 8px rgba(255,142,181,0.4);
     flex-shrink:0;
-  }
-
-  .vision-panel{
-    position:fixed;
-    top:72px;
-    right:22px;
-    z-index:12;
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    width:210px;
-    padding:16px;
-    background:linear-gradient(160deg, var(--panel), #08152699);
-    border:1px solid var(--line);
-    border-radius:12px;
-    backdrop-filter:blur(8px);
-    box-shadow:0 10px 40px rgba(0,0,0,.5);
-    opacity:0;
-    transform:translateY(-10px);
-    pointer-events:none;
-    transition:opacity .25s ease, transform .25s ease;
-  }
-  .vision-panel.open{
-    opacity:1;
-    transform:translateY(0);
-    pointer-events:auto;
-  }
-  .vision-option{
-    width:46px;height:46px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:19px;
-    cursor:pointer;
-    border:2px solid transparent;
-    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-  }
-  .vision-option:hover{transform:scale(1.12);}
-  .vision-option.active{
-    border-color:#fff;
-    box-shadow:0 0 14px rgba(255,255,255,.6);
-  }
-
-  /* CRITTER BUTTONS (cat / dog / frog) */
-  .critter-btn .diamond{
-    width:9px;height:9px;
-    background:linear-gradient(155deg, var(--cryo-bright), var(--cryo-deep));
-    transform:rotate(45deg);
-    box-shadow:0 0 8px rgba(var(--cryo-rgb),.8);
-    flex-shrink:0;
-  }
-  .critter-btn{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    padding:12px 20px;
-    background:linear-gradient(160deg, #1c0f36e6, #120826e6);
-    border:1px solid var(--line);
-    border-radius:999px;
-    color:var(--cryo-bright);
-    font-size:12px;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    cursor:pointer;
-    backdrop-filter:blur(6px);
-    box-shadow:0 0 24px rgba(var(--cryo-rgb),.25), inset 0 0 12px rgba(var(--cryo-rgb),.08);
-    transition:box-shadow .3s ease, transform .3s ease, border-color .3s ease;
-    opacity:0;
-    animation:fadeIn 1s ease 1.9s forwards;
-  }
-  .critter-btn:hover{
-    box-shadow:0 0 34px rgba(var(--cryo-rgb),.5), inset 0 0 16px rgba(var(--cryo-rgb),.15);
-    border-color:var(--cryo);
-    transform:translateY(-2px);
-  }
-
-
-  /* MUSIC BUTTON */
-  .music-btn{
-    position:fixed;
-    top:22px;
-    left:22px;
-    z-index:12;
-    display:flex;
-    align-items:center;
-    gap:9px;
-    padding:12px 20px;
-    background:linear-gradient(160deg, #1c0f36e6, #120826e6);
-    border:1px solid var(--line);
-    border-radius:999px;
-    color:var(--cryo-bright);
-    font-size:12px;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    cursor:pointer;
-    backdrop-filter:blur(6px);
-    box-shadow:0 0 24px rgba(var(--cryo-rgb),.25), inset 0 0 12px rgba(var(--cryo-rgb),.08);
-    transition:box-shadow .3s ease, transform .3s ease, border-color .3s ease;
-    opacity:0;
-    animation:fadeIn 1s ease 1.9s forwards;
-  }
-  .music-btn:hover{
-    box-shadow:0 0 34px rgba(var(--cryo-rgb),.5), inset 0 0 16px rgba(var(--cryo-rgb),.15);
-    border-color:var(--cryo);
-    transform:translateY(-2px);
   }
   .music-btn .note-icon{
     font-size:13px;
@@ -599,6 +428,19 @@
     50%{transform:scale(1.25);}
   }
 
+  .game-btn{
+    position:fixed;
+    top:22px;
+    right:22px;
+    z-index:12;
+  }
+  .music-btn{
+    position:fixed;
+    top:22px;
+    left:22px;
+    z-index:12;
+  }
+
   /* CRITTER PARADE */
   .critter-parade{
     position:fixed;
@@ -610,7 +452,7 @@
     gap:12px;
     pointer-events:none;
     animation:catRun 9.5s linear forwards;
-    filter:drop-shadow(0 10px 14px rgba(0,0,0,.5));
+    filter:drop-shadow(0 4px 10px rgba(255,142,181,0.2));
   }
   @keyframes catRun{
     0%{transform:translateX(-40vw) translateY(-50%);}
@@ -627,18 +469,19 @@
     to{transform:translateY(-10px) rotate(3deg);}
   }
   .critter-board{
-    background:linear-gradient(160deg, var(--panel), #08152699);
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(4px);
     border:1px solid var(--gold);
-    border-radius:5px;
+    border-radius:8px;
     padding:8px 16px;
     font-family:Georgia,'Times New Roman',serif;
     font-weight:700;
     font-size:14px;
     letter-spacing:.02em;
-    color:var(--cryo-bright);
+    color:var(--cryo-deep);
     white-space:nowrap;
-    text-shadow:0 0 12px rgba(var(--cryo-rgb),.5);
-    box-shadow:0 0 18px rgba(var(--cryo-rgb),.35), inset 0 0 10px rgba(var(--cryo-rgb),.08);
+    text-shadow:0 0 12px rgba(255,142,181,0.2);
+    box-shadow:0 4px 18px rgba(255,142,181,0.1);
     transform:rotate(-2deg);
     animation:boardSway 1.4s ease-in-out infinite alternate;
   }
@@ -650,7 +493,7 @@
   /* MEMORY MODAL */
   .modal-overlay{
     position:fixed; inset:0;
-    background:rgba(6,3,16,.86);
+    background:rgba(255,240,245,0.85);
     backdrop-filter:blur(4px);
     z-index:20;
     display:none;
@@ -669,14 +512,15 @@
     width:min(720px, 94vw);
     max-height:86vh;
     overflow-y:auto;
-    background:linear-gradient(160deg, var(--panel), #08051699);
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:blur(8px);
     border:1px solid var(--line);
-    border-radius:6px;
+    border-radius:16px;
     padding:30px 24px 26px;
     transform:translateY(18px) scale(.97);
     opacity:0;
     transition:transform .4s cubic-bezier(.16,.8,.3,1), opacity .4s ease;
-    box-shadow:0 0 60px rgba(0,0,0,.6), inset 0 0 30px rgba(var(--cryo-rgb),.05);
+    box-shadow:0 20px 60px rgba(255,142,181,0.1);
   }
   .modal-overlay.open .modal-box{
     transform:translateY(0) scale(1);
@@ -686,7 +530,7 @@
     content:'';
     position:absolute; width:16px; height:16px;
     border:1px solid var(--cryo);
-    opacity:.7;
+    opacity:.5;
   }
   .modal-box::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
   .modal-box::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
@@ -701,8 +545,7 @@
     letter-spacing:.05em;
     font-size:26px;
     margin:0;
-    color:var(--cryo-bright);
-    text-shadow:0 0 20px rgba(var(--cryo-rgb),.4);
+    color:var(--cryo-deep);
   }
 
   .close-btn{
@@ -720,9 +563,9 @@
     transition:all .2s ease;
   }
   .close-btn:hover{
-    color:var(--cryo-bright);
+    color:var(--cryo-deep);
     border-color:var(--cryo);
-    box-shadow:0 0 12px rgba(var(--cryo-rgb),.4);
+    box-shadow:0 0 12px rgba(255,142,181,0.2);
   }
 
   .gallery-grid{
@@ -733,16 +576,16 @@
   .mem-tile{
     position:relative;
     aspect-ratio:1;
-    border-radius:4px;
+    border-radius:8px;
     overflow:hidden;
     border:1px solid var(--line);
-    background:#120826;
+    background:#fff;
     cursor:pointer;
     transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
   .mem-tile:hover{
     transform:translateY(-3px);
-    box-shadow:0 8px 24px rgba(0,0,0,.4), 0 0 18px rgba(var(--cryo-rgb),.35);
+    box-shadow:0 8px 24px rgba(255,142,181,0.15);
     border-color:var(--cryo);
   }
   .mem-tile img{
@@ -754,7 +597,7 @@
     position:absolute; top:4px; right:4px;
     width:20px;height:20px;
     border-radius:50%;
-    background:rgba(6,3,16,.75);
+    background:rgba(255,255,255,0.8);
     border:1px solid var(--line);
     color:var(--frost);
     font-size:12px;
@@ -767,7 +610,7 @@
 
   .add-tile{
     aspect-ratio:1;
-    border-radius:4px;
+    border-radius:8px;
     border:1px dashed var(--line);
     display:flex;
     flex-direction:column;
@@ -777,13 +620,13 @@
     color:var(--frost);
     cursor:pointer;
     transition:all .25s ease;
-    background:rgba(var(--cryo-rgb),.03);
+    background:rgba(255,142,181,0.03);
   }
   .add-tile:hover{
     border-color:var(--cryo);
-    color:var(--cryo-bright);
-    box-shadow:0 0 18px rgba(var(--cryo-rgb),.25);
-    background:rgba(var(--cryo-rgb),.08);
+    color:var(--cryo-deep);
+    box-shadow:0 0 18px rgba(255,142,181,0.15);
+    background:rgba(255,142,181,0.06);
   }
   .add-tile .plus{
     font-size:26px;
@@ -809,7 +652,8 @@
   /* LIGHTBOX */
   .lightbox{
     position:fixed; inset:0;
-    background:rgba(4,2,10,.94);
+    background:rgba(255,240,245,0.9);
+    backdrop-filter:blur(6px);
     z-index:30;
     display:none;
     align-items:center;
@@ -822,41 +666,43 @@
   .lightbox img{
     max-width:92vw;
     max-height:82vh;
-    border-radius:4px;
+    border-radius:8px;
     border:1px solid var(--line);
-    box-shadow:0 0 60px rgba(var(--cryo-rgb),.3);
+    box-shadow:0 0 40px rgba(255,142,181,0.15);
   }
   .lightbox .lb-close{
     position:fixed; top:20px; right:24px;
     width:36px;height:36px;
     border-radius:50%;
     border:1px solid var(--line);
-    background:rgba(10,6,22,.7);
+    background:rgba(255,255,255,0.7);
     color:var(--frost);
     font-size:18px;
     cursor:pointer;
     display:flex;align-items:center;justify-content:center;
   }
-  .lightbox .lb-close:hover{color:var(--cryo-bright); border-color:var(--cryo);}
+  .lightbox .lb-close:hover{color:var(--cryo-deep); border-color:var(--cryo);}
   .lightbox .lb-nav{
     position:fixed; top:50%; transform:translateY(-50%);
     width:44px;height:44px;
     border-radius:50%;
     border:1px solid var(--line);
-    background:rgba(10,6,22,.7);
+    background:rgba(255,255,255,0.7);
     color:var(--frost);
     font-size:20px;
     cursor:pointer;
     display:flex;align-items:center;justify-content:center;
   }
-  .lightbox .lb-nav:hover{color:var(--cryo-bright); border-color:var(--cryo);}
+  .lightbox .lb-nav:hover{color:var(--cryo-deep); border-color:var(--cryo);}
   .lightbox .lb-prev{left:18px;}
   .lightbox .lb-next{right:18px;}
+
   /* CAKE SCREEN */
   .cake-screen{
     position:fixed; inset:0;
     z-index:40;
-    background:radial-gradient(ellipse at 50% 20%, #1c0f36 0%, var(--void) 78%);
+    background:rgba(255,240,245,0.9);
+    backdrop-filter:blur(4px);
     display:none;
     align-items:center;
     justify-content:center;
@@ -879,16 +725,19 @@
     opacity:1;
     transform:translateY(0) scale(1);
   }
+  
   .cake-title{
     font-family:Georgia,'Times New Roman',serif;
     font-weight:700;
     font-size:clamp(26px,6vw,36px);
     margin:2px 0 8px;
-    background:linear-gradient(180deg, #ffffff 0%, var(--cryo-bright) 45%, var(--cryo) 100%);
+    background:linear-gradient(180deg, #ffffff 0%, #ffd1dc 45%, #ff8eb5 100%);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
-    text-shadow:0 0 30px rgba(var(--cryo-rgb),.35);
+    /* BLACK STROKE FOR CAKE TITLE */
+    -webkit-text-stroke: 1.2px #000000;
+    text-stroke: 1.2px #000000;
   }
   .cake-sub{
     color:var(--frost);
@@ -948,7 +797,7 @@
     transform:translateX(-50%);
     width:94%; height:18px;
     border-radius:50%;
-    background:radial-gradient(ellipse at center, rgba(var(--cryo-rgb),.4), transparent 72%);
+    background:radial-gradient(ellipse at center, rgba(255,142,181,0.3), transparent 72%);
     filter:blur(1px);
   }
   .cake-tier{
@@ -956,7 +805,7 @@
     left:50%;
     transform:translateX(-50%);
     border-radius:10px;
-    box-shadow:0 6px 18px rgba(0,0,0,.4), inset 0 0 14px rgba(255,255,255,.15);
+    box-shadow:0 6px 18px rgba(255,142,181,0.1), inset 0 0 14px rgba(255,255,255,.2);
   }
   .cake-tier::before{
     content:'';
@@ -969,15 +818,15 @@
   }
   .tier-base{
     bottom:22px; width:88%; height:64px;
-    background:linear-gradient(180deg, var(--cryo-bright) 0%, var(--cryo) 45%, var(--cryo-deep) 100%);
+    background:linear-gradient(180deg, #ffffff 0%, #ffd1dc 45%, #ff8eb5 100%);
   }
   .tier-mid{
     bottom:78px; width:64%; height:52px;
-    background:linear-gradient(180deg, #fff6df 0%, var(--gold) 55%, #a9812f 100%);
+    background:linear-gradient(180deg, #fff6df 0%, #ffe4ed 55%, #ff8eb5 100%);
   }
   .tier-top{
     bottom:124px; width:42%; height:42px;
-    background:linear-gradient(180deg, #ffffff 0%, var(--cryo-bright) 60%, var(--cryo) 100%);
+    background:linear-gradient(180deg, #ffffff 0%, #ffe4ed 60%, #ff8eb5 100%);
   }
 
   .candle-layer{
@@ -993,7 +842,7 @@
     transform:translateX(-50%);
     transform-origin:bottom center;
     animation:candlePop .55s cubic-bezier(.34,1.56,.64,1) both;
-    box-shadow:0 0 6px rgba(0,0,0,.3);
+    box-shadow:0 0 6px rgba(255,142,181,0.2);
   }
   .candle::before{
     content:'';
@@ -1023,7 +872,7 @@
     z-index:6;
     opacity:0;
     transform:translate(0,0) rotate(-38deg);
-    filter:drop-shadow(0 4px 8px rgba(0,0,0,.5));
+    filter:drop-shadow(0 4px 8px rgba(0,0,0,.05));
     will-change:transform, opacity;
   }
 
@@ -1039,19 +888,20 @@
     align-items:center;
     gap:9px;
     padding:12px 20px;
-    background:linear-gradient(160deg, #1c0f36e6, #120826e6);
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(4px);
     border:1px solid var(--line);
     border-radius:999px;
-    color:var(--cryo-bright);
+    color:var(--cryo-deep);
     font-size:12px;
     letter-spacing:.14em;
     text-transform:uppercase;
     cursor:pointer;
-    box-shadow:0 0 24px rgba(var(--cryo-rgb),.25), inset 0 0 12px rgba(var(--cryo-rgb),.08);
+    box-shadow:0 4px 20px rgba(255,142,181,0.1);
     transition:box-shadow .3s ease, transform .3s ease, border-color .3s ease, opacity .3s ease;
   }
   .cake-action-btn:hover{
-    box-shadow:0 0 34px rgba(var(--cryo-rgb),.5), inset 0 0 16px rgba(var(--cryo-rgb),.15);
+    box-shadow:0 0 30px rgba(255,142,181,0.15);
     border-color:var(--cryo);
     transform:translateY(-2px);
   }
@@ -1065,7 +915,7 @@
     width:9px;height:9px;
     background:linear-gradient(155deg, var(--cryo-bright), var(--cryo-deep));
     transform:rotate(45deg);
-    box-shadow:0 0 8px rgba(var(--cryo-rgb),.8);
+    box-shadow:0 0 8px rgba(255,142,181,0.4);
     flex-shrink:0;
   }
 
@@ -1077,7 +927,7 @@
     align-items:center;
     justify-content:center;
     gap:14px;
-    background:rgba(8,4,18,.9);
+    background:rgba(255,240,245,0.95);
     backdrop-filter:blur(5px);
     opacity:0;
     pointer-events:none;
@@ -1100,11 +950,13 @@
     font-weight:700;
     font-size:clamp(24px,7vw,38px);
     letter-spacing:.03em;
-    background:linear-gradient(180deg, #ffffff 0%, var(--cryo-bright) 45%, var(--cryo) 100%);
+    background:linear-gradient(180deg, #ffffff 0%, #ffd1dc 45%, #ff8eb5 100%);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
-    text-shadow:0 0 30px rgba(var(--cryo-rgb),.4);
+    /* BLACK STROKE FOR CONGRATS TEXT */
+    -webkit-text-stroke: 1.2px #000000;
+    text-stroke: 1.2px #000000;
   }
   @keyframes congratsPop{
     0%{transform:scale(.3) rotate(-8deg); opacity:0;}
@@ -1126,7 +978,7 @@
   .envelope-overlay{
     position:fixed; inset:0;
     z-index:60;
-    background:rgba(6,3,16,.92);
+    background:rgba(255,240,245,0.9);
     backdrop-filter:blur(6px);
     display:none;
     align-items:center;
@@ -1169,17 +1021,18 @@
   .envelope-back{
     position:absolute; inset:0;
     border-radius:6px;
-    background:linear-gradient(160deg, var(--panel), #08152699);
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(4px);
     border:1px solid var(--line);
-    box-shadow:0 14px 34px rgba(0,0,0,.5), inset 0 0 18px rgba(var(--cryo-rgb),.08);
+    box-shadow:0 14px 34px rgba(255,142,181,0.1);
   }
   .envelope-letter-peek{
     position:absolute;
     left:10%; right:10%; top:-4px;
     height:68%;
-    background:linear-gradient(180deg,#ffffff,#f1e9ff);
+    background:linear-gradient(180deg,#ffffff,#ffe4ed);
     border-radius:3px 3px 0 0;
-    box-shadow:0 -2px 10px rgba(0,0,0,.25);
+    box-shadow:0 -2px 10px rgba(255,142,181,0.1);
     transform:translateY(10px);
     transition:transform .5s cubic-bezier(.16,.8,.3,1);
     z-index:1;
@@ -1190,7 +1043,7 @@
   .envelope-flap{
     position:absolute; top:0; left:0; width:100%; height:58%;
     clip-path:polygon(0 0, 50% 88%, 100% 0);
-    background:linear-gradient(160deg, var(--cryo-deep), var(--cryo));
+    background:linear-gradient(160deg, #ffe4ed, #ff8eb5);
     border:1px solid var(--line);
     border-bottom:none;
     transform-origin:top center;
@@ -1206,12 +1059,12 @@
     transform:translate(-50%,-50%);
     width:46px;height:46px;
     border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, var(--gold), var(--cryo-deep));
-    box-shadow:0 0 12px rgba(var(--cryo-rgb),.65), 0 3px 8px rgba(0,0,0,.4);
-    border:2px solid var(--cryo-bright);
+    background:radial-gradient(circle at 35% 30%, #ffe4ed, #ff8eb5);
+    box-shadow:0 0 12px rgba(255,142,181,0.3), 0 3px 8px rgba(255,142,181,0.2);
+    border:2px solid #fff;
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
-    color:#2a1350; font-size:11px;
+    color:#b34a6e; font-size:11px;
     z-index:3;
     transition:opacity .3s ease, transform .3s ease;
   }
@@ -1259,8 +1112,9 @@
     -webkit-backface-visibility:hidden;
     border-radius:8px;
     border:1px solid var(--line);
-    background:linear-gradient(160deg, var(--panel), #08051699);
-    box-shadow:0 20px 60px rgba(0,0,0,.55), inset 0 0 30px rgba(var(--cryo-rgb),.05);
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(6px);
+    box-shadow:0 20px 60px rgba(255,142,181,0.1);
     overflow:hidden;
   }
   .letter-front{
@@ -1284,7 +1138,7 @@
     font-family:Georgia,'Times New Roman',serif;
     font-size:15.5px;
     line-height:1.85;
-    color:#dcecf7;
+    color:#6b3b4c;
     text-align:left;
     margin:0;
   }
@@ -1299,8 +1153,8 @@
   .letter-back-caption{
     position:absolute; left:0; right:0; bottom:0;
     padding:22px 16px 14px;
-    background:linear-gradient(0deg, rgba(6,3,16,.85), transparent);
-    color:var(--cryo-bright);
+    background:linear-gradient(0deg, rgba(255,240,245,0.85), transparent);
+    color:var(--cryo-deep);
     font-family:Georgia,'Times New Roman',serif;
     font-size:14px;
     letter-spacing:.08em;
@@ -1312,7 +1166,7 @@
     width:32px; height:32px;
     border-radius:50%;
     border:1px solid var(--line);
-    background:rgba(10,6,22,.72);
+    background:rgba(255,255,255,0.7);
     color:var(--frost);
     font-size:17px;
     cursor:pointer;
@@ -1320,7 +1174,7 @@
     z-index:5;
     transition:all .2s ease;
   }
-  .letter-nav:hover{color:var(--cryo-bright); border-color:var(--cryo);}
+  .letter-nav:hover{color:var(--cryo-deep); border-color:var(--cryo);}
   .letter-nav-left{left:10px;}
   .letter-nav-right{right:10px;}
 
@@ -1332,7 +1186,7 @@
     letter-spacing:.16em;
     text-transform:uppercase;
     color:var(--frost);
-    opacity:.55;
+    opacity:.5;
     z-index:5;
     pointer-events:none;
     animation:fadeIn 1s ease .4s both;
@@ -1348,7 +1202,7 @@
     position: fixed;
     inset: 0;
     z-index: 70;
-    background: rgba(6,3,16,0.92);
+    background: rgba(255,240,245,0.9);
     backdrop-filter: blur(6px);
     display: none;
     align-items: center;
@@ -1365,11 +1219,12 @@
     position: relative;
     width: min(500px, 90vw);
     height: min(400px, 60vh);
-    background: linear-gradient(160deg, var(--panel), #08152699);
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(4px);
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 0 60px rgba(var(--cryo-rgb), 0.2);
+    box-shadow: 0 0 40px rgba(255,142,181,0.1);
   }
   .game-canvas {
     width: 100%;
@@ -1382,10 +1237,10 @@
     top: 12px;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--cryo-bright);
+    color: var(--cryo-deep);
     font-size: 14px;
     letter-spacing: 0.1em;
-    background: rgba(0,0,0,0.5);
+    background: rgba(255,255,255,0.7);
     padding: 6px 16px;
     border-radius: 999px;
     border: 1px solid var(--line);
@@ -1400,7 +1255,7 @@
     gap: 6px;
   }
   .game-hud .score-val {
-    color: var(--gold);
+    color: var(--cryo-deep);
     font-weight: bold;
   }
   .game-close-btn {
@@ -1411,7 +1266,7 @@
     height: 28px;
     border-radius: 50%;
     border: 1px solid var(--line);
-    background: rgba(10,6,22,0.7);
+    background: rgba(255,255,255,0.7);
     color: var(--frost);
     font-size: 14px;
     cursor: pointer;
@@ -1422,7 +1277,7 @@
     transition: all 0.2s ease;
   }
   .game-close-btn:hover {
-    color: var(--cryo-bright);
+    color: var(--cryo-deep);
     border-color: var(--cryo);
   }
   
@@ -1431,7 +1286,7 @@
     position: fixed;
     inset: 0;
     z-index: 80;
-    background: rgba(6,3,16,0.92);
+    background: rgba(255,240,245,0.9);
     backdrop-filter: blur(6px);
     display: none;
     align-items: center;
@@ -1447,11 +1302,12 @@
   .prize-box {
     position: relative;
     width: min(380px, 88vw);
-    background: linear-gradient(160deg, var(--panel), #08051699);
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
     border: 1px solid var(--gold);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 30px 24px 26px;
-    box-shadow: 0 0 60px rgba(var(--cryo-rgb), 0.3);
+    box-shadow: 0 0 40px rgba(255,142,181,0.15);
     text-align: center;
     transform: scale(0.9);
     transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
@@ -1466,7 +1322,7 @@
     width: 16px;
     height: 16px;
     border: 1px solid var(--gold);
-    opacity: 0.7;
+    opacity: 0.5;
   }
   .prize-box::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
   .prize-box::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
@@ -1474,16 +1330,14 @@
   .prize-title {
     font-family: Georgia, serif;
     font-size: 22px;
-    color: var(--gold);
+    color: var(--cryo-deep);
     margin-bottom: 12px;
-    text-shadow: 0 0 20px rgba(232,201,122,0.3);
   }
   .prize-question {
     font-size: 28px;
     font-family: Georgia, serif;
-    color: var(--cryo-bright);
+    color: var(--cryo-deep);
     margin: 16px 0 22px;
-    text-shadow: 0 0 30px rgba(var(--cryo-rgb), 0.4);
   }
   .prize-options {
     display: flex;
@@ -1494,8 +1348,8 @@
     padding: 10px 32px;
     border-radius: 999px;
     border: 1px solid var(--line);
-    background: linear-gradient(160deg, #1c0f36e6, #120826e6);
-    color: var(--cryo-bright);
+    background: rgba(255,255,255,0.7);
+    color: var(--cryo-deep);
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -1504,19 +1358,18 @@
   }
   .prize-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 24px rgba(var(--cryo-rgb), 0.4);
+    box-shadow: 0 0 24px rgba(255,142,181,0.2);
     border-color: var(--cryo);
   }
   .prize-btn.yes:hover {
     border-color: #4caf50;
-    box-shadow: 0 0 24px rgba(76,175,80,0.4);
+    box-shadow: 0 0 24px rgba(76,175,80,0.2);
   }
   .prize-btn.no:hover {
     border-color: #f44336;
-    box-shadow: 0 0 24px rgba(244,67,54,0.4);
+    box-shadow: 0 0 24px rgba(244,67,54,0.2);
   }
   
-  /* PRIZE RESULT IMAGE */
   .prize-result {
     display: none;
     margin-top: 16px;
@@ -1532,7 +1385,7 @@
     max-height: 240px;
     border-radius: 4px;
     border: 1px solid var(--line);
-    box-shadow: 0 0 30px rgba(var(--cryo-rgb), 0.2);
+    box-shadow: 0 0 30px rgba(255,142,181,0.15);
     object-fit: contain;
   }
   .prize-result .result-label {
@@ -1547,7 +1400,7 @@
     padding: 8px 24px;
     border-radius: 999px;
     border: 1px solid var(--line);
-    background: rgba(10,6,22,0.7);
+    background: rgba(255,255,255,0.7);
     color: var(--frost);
     font-size: 12px;
     letter-spacing: 0.1em;
@@ -1555,7 +1408,7 @@
     transition: all 0.2s ease;
   }
   .prize-close-btn:hover {
-    color: var(--cryo-bright);
+    color: var(--cryo-deep);
     border-color: var(--cryo);
   }
   
@@ -1575,7 +1428,8 @@
 </head>
 <body>
 
-<canvas id="snow"></canvas>
+<!-- Floating rose petals canvas -->
+<canvas id="petals"></canvas>
 <div class="rays"></div>
 <div class="vignette"></div>
 
@@ -1583,30 +1437,28 @@
   <span class="note-icon" id="musicIcon">♪</span>
   <span id="musicLabel">Music</span>
 </button>
-<audio id="bgMusic" src="birthday-song.m4a" loop preload="auto"></audio>
+<audio id="bgMusic" loop preload="auto">
+  <source src="birthday-song.m4a" type="audio/mp4">
+  <source src="birthday-song.mp3" type="audio/mpeg">
+</audio>
 
-<button class="vision-select-btn" id="visionSelectBtn">
+<button class="game-btn" id="gameBtn">
   <span class="diamond"></span>
-  Vision
+  🏹 Game
 </button>
-<div class="vision-panel" id="visionPanel"></div>
 
 <div id="stage">
   <div class="card">
-    <div class="eyebrow">Vision Bestowed Upon</div>
+    <div class="eyebrow">A Birthday Wish For</div>
 
-    <div class="vision-wrap" id="visionBtn" role="button" aria-label="Tap to unlock birthday wish" tabindex="0">
-      <div class="ring r1"></div>
-      <div class="ring r2"></div>
-      <div class="ring r3"></div>
-      <div class="glow"></div>
-      <div class="gem"></div>
-      <div class="sparkle" id="sparkleField"></div>
+    <!-- YOUR GIF FROM GITHUB -->
+    <div class="gif-container">
+      <div class="ring-gif"></div>
+      <img src="https://raw.githubusercontent.com/genshindummy114-gif/samia-bday/main/images/giphy.gif" alt="Birthday GIF">
     </div>
-    <div class="hint" id="hintText">◆ tap the vision ◆</div>
 
     <h1 class="name">IKRA</h1>
-    <div class="subtitle" id="subtitleText">ELECTRO &nbsp;·&nbsp; RAIDEN SHOGUN</div>
+    <div class="subtitle" id="subtitleText">🌸 17 · Sweet & Sparkly 🌸</div>
 
     <div class="panel">
       <div class="stat-row">
@@ -1620,21 +1472,21 @@
         </div>
         <div class="stat">
           <div class="label">Element</div>
-          <div class="value" id="elementValue">Electro</div>
+          <div class="value" id="elementValue">💖 Love</div>
         </div>
       </div>
 
+      <!-- WISH BOX (Hidden until Surprise is triggered) -->
       <div class="wish" id="wishText">
-        Happy birthday, <b>Ikra</b>. Seventeen looks good on you — Musou no Hitotachi,
-        one clean strike, and a new year begins. May your resolve stay unbending like
-        the Shogun's, your energy strike like lightning, and eternity's plotline
-        still leave room for cake. Here's to more levels, more laughs, and a story
-        only you could write. ⚡
+        Happy birthday, <b>Ikra</b>. Seventeen looks absolutely beautiful on you — like a perfect pink blossom in full bloom. May your days be filled with laughter, your heart with joy, and your year ahead with endless sweet surprises. You deserve all the cake, all the love, and all the happiness in the world. Here's to you, beautiful. 🌸🎂💖
         <div class="signoff">— wishing you the happiest of days</div>
       </div>
     </div>
 
-    <div class="footer-note" id="footerNote">Inazuma Archive · Oct 2</div>
+    <!-- A MESSAGE FROM ASHFANTASTIC BUTTON -->
+    <button class="surprise-trigger-btn" id="surpriseTriggerBtn">✨ A message from AshFantastic ✨</button>
+
+    <div class="footer-note" id="footerNote">Sweet Archives · Oct 2</div>
   </div>
 </div>
 
@@ -1642,11 +1494,6 @@
   <button class="memories-btn" id="memoriesBtn">
     <span class="diamond"></span>
     Our Memories
-  </button>
-
-  <button class="critter-btn" id="gameBtn">
-    <span class="diamond"></span>
-    🏹 Game
   </button>
 
   <button class="critter-btn cat-btn" id="catBtn">
@@ -1813,10 +1660,10 @@
 </div>
 
 <script>
-  // ambient snow / ice shard particles
-  const canvas = document.getElementById('snow');
+  // Floating rose petals
+  const canvas = document.getElementById('petals');
   const ctx = canvas.getContext('2d');
-  let w,h,particles=[];
+  let w,h,petals=[];
   function resize(){
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
@@ -1824,50 +1671,50 @@
   window.addEventListener('resize', resize);
   resize();
 
-  const COUNT = Math.min(90, Math.floor(window.innerWidth/14));
+  const COUNT = Math.min(40, Math.floor(window.innerWidth/20));
   for(let i=0;i<COUNT;i++){
-    particles.push({
+    petals.push({
       x: Math.random()*w,
       y: Math.random()*h,
-      r: Math.random()*2.2+0.6,
-      speedY: Math.random()*0.5+0.15,
-      speedX: (Math.random()-0.5)*0.3,
-      alpha: Math.random()*0.5+0.2,
+      size: 6 + Math.random()*12,
+      speedY: 0.2 + Math.random()*0.4,
+      speedX: (Math.random()-0.5)*0.2,
+      rotation: Math.random()*360,
+      rotSpeed: (Math.random()-0.5)*2,
+      alpha: 0.4 + Math.random()*0.4,
       tw: Math.random()*Math.PI*2
     });
   }
   function draw(){
     ctx.clearRect(0,0,w,h);
-    particles.forEach(p=>{
+    petals.forEach(p=>{
       p.tw += 0.02;
-      const a = p.alpha * (0.6 + 0.4*Math.sin(p.tw));
+      const a = p.alpha * (0.7 + 0.3*Math.sin(p.tw));
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation * Math.PI/180);
+      p.rotation += p.rotSpeed;
+      ctx.globalAlpha = a;
+      ctx.fillStyle = '#ff8eb5';
+      ctx.shadowColor = 'rgba(255,142,181,0.3)';
+      ctx.shadowBlur = 6;
       ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle = `rgba(200,160,255,${a})`;
-      ctx.shadowColor = 'rgba(180,130,255,0.8)';
-      ctx.shadowBlur = 4;
+      ctx.ellipse(0, 0, p.size/2, p.size/3, 0, 0, Math.PI*2);
       ctx.fill();
+      ctx.fillStyle = '#ffe4ed';
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.size/3, p.size/4, 0, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
       p.y += p.speedY;
       p.x += p.speedX;
-      if(p.y > h+5){ p.y = -5; p.x = Math.random()*w; }
-      if(p.x > w+5) p.x = -5;
-      if(p.x < -5) p.x = w+5;
+      if(p.y > h+10){ p.y = -10; p.x = Math.random()*w; }
+      if(p.x > w+10) p.x = -10;
+      if(p.x < -10) p.x = w+10;
     });
     requestAnimationFrame(draw);
   }
   draw();
-
-  // sparkle field around vision
-  const field = document.getElementById('sparkleField');
-  for(let i=0;i<10;i++){
-    const s = document.createElement('span');
-    const angle = (i/10) * Math.PI*2;
-    const radius = 78;
-    s.style.left = (90 + Math.cos(angle)*radius) + 'px';
-    s.style.top = (90 + Math.sin(angle)*radius) + 'px';
-    s.style.animationDelay = (Math.random()*2.4) + 's';
-    field.appendChild(s);
-  }
 
   // ---------- MUSIC ----------
   const musicBtn = document.getElementById('musicBtn');
@@ -1889,32 +1736,31 @@
         musicBtn.classList.add('playing');
         musicIcon.textContent = '❚❚';
         musicLabel.textContent = 'Pause';
-      }).catch(()=>{
-        // playback blocked or file missing — button stays in "off" state
-      });
+      }).catch(()=>{});
     }
   });
 
-  // reveal wish on tap
-  const btn = document.getElementById('visionBtn');
-  const wish = document.getElementById('wishText');
-  const hint = document.getElementById('hintText');
-  let revealed = false;
-  function reveal(){
+  // ---------- A MESSAGE FROM ASHFANTASTIC ----------
+  const surpriseTriggerBtn = document.getElementById('surpriseTriggerBtn');
+  const wishText = document.getElementById('wishText');
+
+  surpriseTriggerBtn.addEventListener('click', function() {
+    // Hide the button with animation
+    surpriseTriggerBtn.classList.add('hidden');
+    
+    // Reveal the wish text
+    wishText.classList.add('show');
+    
+    // Launch the celebration effects
     launchBalloons();
-    if(revealed) return;
-    revealed = true;
-    wish.classList.add('show');
-    hint.style.opacity = 0;
     burst();
     flash();
     popTitle();
-  }
-  btn.addEventListener('click', reveal);
-  btn.addEventListener('keypress', e=>{ if(e.key==='Enter' || e.key===' ') reveal(); });
+  });
 
   function burst(){
-    const rect = btn.getBoundingClientRect();
+    const gif = document.querySelector('.gif-container');
+    const rect = gif.getBoundingClientRect();
     const cx = rect.left + rect.width/2;
     const cy = rect.top + rect.height/2;
     for(let i=0;i<34;i++){
@@ -1926,8 +1772,8 @@
       p.style.top = cy+'px';
       p.style.width = p.style.height = (Math.random()*4+2)+'px';
       p.style.borderRadius='50%';
-      p.style.background = Math.random()>0.5 ? '#efd9ff' : '#ffe9a8';
-      p.style.boxShadow = '0 0 8px 2px rgba(200,160,255,0.9)';
+      p.style.background = Math.random()>0.5 ? '#ffe4ed' : '#ffd1dc';
+      p.style.boxShadow = '0 0 8px 2px rgba(255,142,181,0.9)';
       p.style.zIndex = 6;
       p.style.pointerEvents='none';
       document.body.appendChild(p);
@@ -1952,7 +1798,7 @@
   function popTitle(){
     const t = document.createElement('div');
     t.className = 'burst-title';
-    t.textContent = 'HAPPY BIRTHDAY ⚡';
+    t.textContent = 'HAPPY BIRTHDAY 🎀';
     t.style.animation = 'burstPop 2600ms cubic-bezier(.2,.7,.3,1) forwards';
     document.body.appendChild(t);
     setTimeout(()=>t.remove(), 2700);
@@ -1960,10 +1806,10 @@
 
   function launchBalloons(){
     const colors = [
-      'radial-gradient(circle at 32% 28%, #efd9ff, #b083ff 55%, #6b3fc7 100%)',
-      'radial-gradient(circle at 32% 28%, #fff2cf, #e8c97a 55%, #b8933f 100%)',
-      'radial-gradient(circle at 32% 28%, #f4e6ff, #cbb0e8 55%, #7a56ad 100%)',
-      'radial-gradient(circle at 32% 28%, #ffffff, #d9c2ff 55%, #8a5fd9 100%)'
+      'radial-gradient(circle at 32% 28%, #ffe4ed, #ff8eb5 55%, #b34a6e 100%)',
+      'radial-gradient(circle at 32% 28%, #fff2cf, #ffd1dc 55%, #c97a92 100%)',
+      'radial-gradient(circle at 32% 28%, #ffe4ed, #f8c8d8 55%, #b34a6e 100%)',
+      'radial-gradient(circle at 32% 28%, #ffffff, #ffd1dc 55%, #c97a92 100%)'
     ];
     const count = 14;
     for(let i=0;i<count;i++){
@@ -1982,7 +1828,7 @@
       b.style.color = color.match(/#[0-9a-fA-F]{6}/g)[1];
       document.body.appendChild(b);
 
-      const anim = b.animate([
+      b.animate([
         { transform:`translate(0px, 0px) rotate(0deg)`, offset:0 },
         { transform:`translate(${sway}px, -45vh) rotate(6deg)`, offset:0.5 },
         { transform:`translate(${-sway}px, -95vh) rotate(-6deg)`, offset:0.9 },
@@ -2090,102 +1936,7 @@
     if(e.key === 'ArrowRight') stepLightbox(1);
   });
 
-  renderGallery(); // show preloaded memories immediately
-
-  // VISION SELECTOR
-  const visions = {
-    pyro:{
-      name:'Pyro', symbol:'🔥', character:'LIL SIS OF MAVUIKA', archive:'HERO TUMAINI',
-      colors:{bright:'#ffe3cf', mid:'#ff7043', deep:'#a03418', line:'#b5522f', gold:'#ffb37a'},
-      message:`Happy birthday, <b>Ikra</b>. Blow out all seventeen candles and let this year burn as bright and mischievous as you are. May your days stay warm, your spirit stay wild, and every "boo!" get replaced with cake. Here's to sparks, laughter, and one unforgettable new chapter. 🔥`
-    },
-    hydro:{
-      name:'Hydro', symbol:'💧', character:'FURINA OF REAL WORLD', archive:'Fontaine Opera Records',
-      colors:{bright:'#d6f3ff', mid:'#4fc3f7', deep:'#155f8f', line:'#2f83a8', gold:'#8fdcff'},
-      message:`Happy birthday, <b>Ikra</b>. Like the Oratrice Mecanique d'Analyse Cardinale, may this year bring wave after wave of joy your way — some gentle, some big enough to knock you off your feet laughing. Stay fluid, stay bright, and let seventeen flow beautifully. 💧`
-    },
-    anemo:{
-      name:'Anemo', symbol:'🍃', character:'DAUGHTER OF VENTI', archive:'Mondstadt Cathedral Records',
-      colors:{bright:'#e2f7ee', mid:'#6fcdb0', deep:'#2c7d63', line:'#4a9c81', gold:'#a8e6cf'},
-      message:`Happy birthday, <b>Ikra</b>. May this new year carry you like the wind — light on your feet, free in your heart, always finding your way to the next adventure. Here's to seventeen breezy, beautiful days ahead. 🍃`
-    },
-    electro:{
-      name:'Electro', symbol:'⚡', character:'IKOO CANT COOK', archive:'Inazuma Archive',
-      colors:{bright:'#efd9ff', mid:'#b083ff', deep:'#5a2f9e', line:'#6b459c', gold:'#e8c97a'},
-      message:`Happy birthday, <b>Ikra</b>. Seventeen looks good on you — Musou no Hitotachi, one clean strike, and a new year begins. May your resolve stay unbending like the Shogun's, your energy strike like lightning, and eternity's plotline still leave room for cake. Here's to more levels, more laughs, and a story only you could write. ⚡`
-    },
-    dendro:{
-      name:'Dendro', symbol:'🌿', character:'NAHIDA', archive:'Sumeru Akademiya Archives',
-      colors:{bright:'#eeffc2', mid:'#a8d84a', deep:'#547a1e', line:'#7ba032', gold:'#c8e88a'},
-      message:`Happy birthday, <b>Ikra</b>. May this year help you grow like the forests of Sumeru — rooted in the people who love you, reaching for everything you dream of. Wisdom, wonder, and plenty of cake await. 🌿`
-    },
-    cryo:{
-      name:'Cryo', symbol:'❄️', character:'TSARITSA', archive:'Snezhnaya Chronicle',
-      colors:{bright:'#eafdff', mid:'#9fe3f0', deep:'#337f96', line:'#4f9fb2', gold:'#c4f2fa'},
-      message:`Happy birthday, <b>Ikra</b>. May this year be as clear and dazzling as freshly fallen snow — cool under pressure, beautiful in every season, unforgettable wherever you go. Here's to seventeen radiant days. ❄️`
-    },
-    geo:{
-      name:'Geo', symbol:'💎', character:'ZHONGLI', archive:'Liyue Qixing Ledger',
-      colors:{bright:'#fff3d1', mid:'#e8c97a', deep:'#8a6a1f', line:'#a9843b', gold:'#ffe19a'},
-      message:`Happy birthday, <b>Ikra</b>. May this year be built to last — steady as stone, golden as contracts kept, rich with everything you've worked for. Here's to a foundation strong enough for a hundred more birthdays. 💎`
-    }
-  };
-
-  function hexToRgb(hex){
-    const h = hex.replace('#','');
-    const bigint = parseInt(h,16);
-    return `${(bigint>>16)&255},${(bigint>>8)&255},${bigint&255}`;
-  }
-
-  const visionPanel = document.getElementById('visionPanel');
-  const visionSelectBtn = document.getElementById('visionSelectBtn');
-  const subtitleText = document.getElementById('subtitleText');
-  const elementValue = document.getElementById('elementValue');
-  const footerNote = document.getElementById('footerNote');
-  const root = document.documentElement.style;
-
-  Object.keys(visions).forEach(key=>{
-    const v = visions[key];
-    const opt = document.createElement('div');
-    opt.className = 'vision-option' + (key === 'electro' ? ' active' : '');
-    opt.dataset.key = key;
-    opt.textContent = v.symbol;
-    opt.style.background = `radial-gradient(circle, ${v.colors.mid}, ${v.colors.deep})`;
-    opt.title = v.name;
-    opt.addEventListener('click', ()=> applyVision(key));
-    visionPanel.appendChild(opt);
-  });
-
-  function applyVision(key){
-    const v = visions[key];
-    root.setProperty('--cryo', v.colors.mid);
-    root.setProperty('--cryo-bright', v.colors.bright);
-    root.setProperty('--cryo-deep', v.colors.deep);
-    root.setProperty('--line', v.colors.line);
-    root.setProperty('--gold', v.colors.gold);
-    root.setProperty('--cryo-rgb', hexToRgb(v.colors.mid));
-    root.setProperty('--cryo-bright-rgb', hexToRgb(v.colors.bright));
-
-    subtitleText.innerHTML = `${v.name.toUpperCase()} &nbsp;·&nbsp; ${v.character}`;
-    elementValue.textContent = v.name;
-    wish.innerHTML = `${v.message}<div class="signoff">— wishing you the happiest of days</div>`;
-    footerNote.textContent = `${v.archive} · Oct 2`;
-
-    document.querySelectorAll('.vision-option').forEach(el=>{
-      el.classList.toggle('active', el.dataset.key === key);
-    });
-    visionPanel.classList.remove('open');
-  }
-
-  visionSelectBtn.addEventListener('click', (e)=>{
-    e.stopPropagation();
-    visionPanel.classList.toggle('open');
-  });
-  document.addEventListener('click', (e)=>{
-    if(!visionPanel.contains(e.target) && e.target !== visionSelectBtn){
-      visionPanel.classList.remove('open');
-    }
-  });
+  renderGallery();
 
   // CRITTER PARADE (cat / dog / frog)
   function spawnParade(emoji){
@@ -2269,8 +2020,6 @@
     }
   });
 
-  // Computes the knife's swipe path from the cake's actual rendered size,
-  // so the blade always crosses through the cake regardless of screen width.
   function animateKnifeCut(){
     const w = cakeWrap.offsetWidth;
     const h = cakeWrap.offsetHeight;
@@ -2292,9 +2041,7 @@
     addCandleBtn.disabled = true;
     cakeHint.textContent = 'slicing the cake...';
 
-    // knife swipes across the actual cake
     animateKnifeCut().then(()=>{
-      // reveal the two cut halves in place of the whole cake
       cakeMain.classList.add('cut');
       cakeHalfLeft.classList.add('show');
       cakeHalfRight.classList.add('show');
@@ -2368,7 +2115,6 @@
   letterNavLeft.addEventListener('click', flipLetter);
   letterNavRight.addEventListener('click', flipLetter);
 
-  // swipe-to-flip on the letter card
   let letterTouchStartX = null;
   let letterTouchStartY = null;
   letterCard.addEventListener('touchstart', (e)=>{
@@ -2475,7 +2221,6 @@
     }, 800);
   }
 
-  // Arrow shooting on click/tap
   gameCanvas.addEventListener('click', (e) => {
     if (!gameRunning || gameOver || arrowCount <= 0) return;
     const rect = gameCanvas.getBoundingClientRect();
@@ -2527,7 +2272,6 @@
     if (targetSpawnTimer) clearInterval(targetSpawnTimer);
     gameScore.textContent = score;
     
-    // Show prize box after 1 second
     setTimeout(() => {
       closeGame();
       setTimeout(() => {
@@ -2541,14 +2285,12 @@
     const ctx = gameCanvas.getContext('2d');
     ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
     
-    // Draw targets
     targets.forEach(t => {
       t.x += t.vx;
       t.y += t.vy;
       if (t.x - t.radius < 0 || t.x + t.radius > gameCanvas.width) t.vx *= -1;
       if (t.y - t.radius < 20 || t.y + t.radius > gameCanvas.height - 10) t.vy *= -1;
       
-      // Glow effect
       ctx.shadowColor = t.color;
       ctx.shadowBlur = 18;
       ctx.beginPath();
@@ -2557,13 +2299,11 @@
       ctx.fill();
       ctx.shadowBlur = 0;
       
-      // Inner circle
       ctx.beginPath();
       ctx.arc(t.x, t.y, t.radius * 0.5, 0, Math.PI * 2);
       ctx.fillStyle = 'rgba(255,255,255,0.4)';
       ctx.fill();
       
-      // Ring
       ctx.strokeStyle = 'rgba(255,255,255,0.3)';
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -2571,7 +2311,6 @@
       ctx.stroke();
     });
     
-    // Draw arrows
     for (let i = arrows.length - 1; i >= 0; i--) {
       const a = arrows[i];
       a.x += a.vx;
@@ -2579,7 +2318,6 @@
       a.vx *= 0.99;
       a.vy *= 0.99;
       
-      // Check collision with targets
       let hit = false;
       for (let j = targets.length - 1; j >= 0; j--) {
         const t = targets[j];
@@ -2587,7 +2325,6 @@
         const dy = a.y - t.y;
         const dist = Math.sqrt(dx*dx + dy*dy);
         if (dist < t.radius + 6) {
-          // Hit!
           score++;
           gameScore.textContent = score;
           targets.splice(j, 1);
@@ -2601,7 +2338,6 @@
         continue;
       }
       
-      // Remove if off screen or too slow
       if (a.x < -20 || a.x > gameCanvas.width + 20 ||
           a.y < -20 || a.y > gameCanvas.height + 20 ||
           (Math.abs(a.vx) < 0.1 && Math.abs(a.vy) < 0.1)) {
@@ -2609,24 +2345,21 @@
         continue;
       }
       
-      // Draw arrow
       ctx.save();
       ctx.translate(a.x, a.y);
       ctx.rotate(a.angle);
       
-      // Arrow shaft
-      ctx.shadowColor = 'rgba(200,160,255,0.6)';
+      ctx.shadowColor = 'rgba(255,142,181,0.6)';
       ctx.shadowBlur = 12;
-      ctx.strokeStyle = '#efd9ff';
+      ctx.strokeStyle = '#ffe4ed';
       ctx.lineWidth = 2.5;
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.lineTo(-18, 0);
       ctx.stroke();
       
-      // Arrowhead
       ctx.shadowBlur = 16;
-      ctx.fillStyle = '#b083ff';
+      ctx.fillStyle = '#ff8eb5';
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.lineTo(-8, -5);
@@ -2634,7 +2367,6 @@
       ctx.closePath();
       ctx.fill();
       
-      // Fletching
       ctx.fillStyle = 'rgba(255,255,255,0.5)';
       ctx.beginPath();
       ctx.moveTo(-18, 0);
@@ -2647,9 +2379,8 @@
       ctx.shadowBlur = 0;
     }
     
-    // Draw remaining arrow count indicator
     if (arrowCount > 0) {
-      ctx.fillStyle = 'rgba(200,160,255,0.2)';
+      ctx.fillStyle = 'rgba(255,142,181,0.2)';
       ctx.font = '12px sans-serif';
       ctx.textAlign = 'center';
       ctx.fillText(`🏹 ${arrowCount} arrows left`, gameCanvas.width/2, 24);
@@ -2701,14 +2432,12 @@
     if (e.target === prizeOverlay) closePrizeBox();
   });
 
-  // Make sure game resizes properly
   window.addEventListener('resize', () => {
     if (gameOverlay.classList.contains('open')) {
       resizeGameCanvas();
     }
   });
 
-  // Ensure game button has fade-in animation
   document.getElementById('gameBtn').style.opacity = '0';
   document.getElementById('gameBtn').style.animation = 'fadeIn 1s ease 1.9s forwards';
 
