@@ -88,12 +88,12 @@
     vertical-align:middle;
   }
 
-  /* GIF CONTAINER */
+  /* GIF CONTAINER - SQUARE SHAPE */
   .gif-container{
     position:relative;
     width:160px; height:160px;
     margin:0 auto 10px;
-    border-radius:50%;
+    border-radius:16px; /* Soft square corners */
     background:rgba(255,255,255,0.8);
     box-shadow:0 0 40px rgba(255,142,181,0.2), 0 0 80px rgba(255,142,181,0.1);
     display:flex;
@@ -107,11 +107,10 @@
     height:100%;
     object-fit:cover;
     display:block;
-    border-radius:50%;
   }
   .ring-gif{
     position:absolute;inset:-4px;
-    border-radius:50%;
+    border-radius:16px;
     border:1px solid var(--cryo);
     opacity:.4;
     animation:spin 18s linear infinite;
@@ -1451,10 +1450,10 @@
   <div class="card">
     <div class="eyebrow">A Birthday Wish For</div>
 
-    <!-- YOUR GIF FROM GITHUB -->
+    <!-- UPDATED GIF FROM YOUR NEW REPO -->
     <div class="gif-container">
       <div class="ring-gif"></div>
-      <img src="https://raw.githubusercontent.com/genshindummy114-gif/samia-bday/main/images/giphy.gif" alt="Birthday GIF">
+      <img src="https://raw.githubusercontent.com/genshindummy114-gif/birthday-card-2.0/main/images/photos/giphy.gif" alt="Birthday GIF">
     </div>
 
     <h1 class="name">IKRA</h1>
