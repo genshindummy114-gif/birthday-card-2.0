@@ -9,6 +9,10 @@
     --void: #fdf6f9;          /* softest blush white */
     --deep: #ffffff;          /* pure white */
     --panel: rgba(255, 240, 245, 0.75);
+    --overlay-bg: rgba(255,240,245,0.9);
+    --panel-bg: rgba(255,255,255,0.8);
+    --panel-strong: rgba(255,255,255,0.85);
+    --glass-bg: rgba(255,255,255,0.7);
     --cryo: #ff8eb5;          /* main pink */
     --cryo-bright: #ffe4ed;   /* baby pink */
     --cryo-deep: #b34a6e;     /* deep rose */
@@ -17,6 +21,128 @@
     --line: #e0b3c4;          /* dusty pink */
     --cryo-rgb: 255,142,181;
     --cryo-bright-rgb: 255,228,237;
+  }
+  body.dark-theme{
+    --void: #120c18;
+    --deep: #1d1224;
+    --panel: rgba(40, 22, 49, 0.78);
+    --overlay-bg: rgba(23, 13, 29, 0.86);
+    --panel-bg: rgba(32, 18, 42, 0.78);
+    --panel-strong: rgba(32, 18, 42, 0.84);
+    --glass-bg: rgba(23, 13, 29, 0.72);
+    --cryo: #ff8fbe;
+    --cryo-bright: #4b2348;
+    --cryo-deep: #ffd3e7;
+    --frost: #f0c8db;
+    --gold: #321b3a;
+    --line: rgba(255, 185, 218, 0.35);
+    --cryo-rgb: 255,143,190;
+    --cryo-bright-rgb: 75,35,72;
+  }
+  body.dark-theme .panel,
+  body.dark-theme .gif-container,
+  body.dark-theme .music-btn,
+  body.dark-theme .theme-btn,
+  body.dark-theme .memories-btn,
+  body.dark-theme .critter-btn,
+  body.dark-theme .game-btn{
+    background: rgba(32, 18, 42, 0.74);
+  }
+  body.dark-theme .subtitle,
+  body.dark-theme .footer-note,
+  body.dark-theme .signoff,
+  body.dark-theme .wish,
+  body.dark-theme .label,
+  body.dark-theme .stat .label,
+  body.dark-theme .value,
+  body.dark-theme .value,
+  body.dark-theme .prize-result .result-label,
+  body.dark-theme .empty-note,
+  body.dark-theme .cake-sub{
+    color: #f4dcea;
+  }
+  body.dark-theme .wish b,
+  body.dark-theme .stat .value,
+  body.dark-theme h1.name,
+  body.dark-theme .cake-title,
+  body.dark-theme .modal-header h2{
+    color: #ffe8f3;
+  }
+  body.dark-theme .critter-board{
+    background: rgba(18, 10, 24, 0.92) !important;
+    border-color: rgba(255, 185, 218, 0.42) !important;
+    color: #4aa8ff !important;
+    text-shadow: 0 0 12px rgba(74, 168, 255, 0.32);
+    box-shadow: 0 4px 18px rgba(74, 168, 255, 0.16);
+  }
+  body.dark-theme .cake-screen,
+  body.dark-theme .congrats-overlay,
+  body.dark-theme .envelope-overlay,
+  body.dark-theme .game-overlay,
+  body.dark-theme .prize-overlay,
+  body.dark-theme .lightbox,
+  body.dark-theme .game-container,
+  body.dark-theme .prize-box,
+  body.dark-theme .letter-face,
+  body.dark-theme .envelope-back,
+  body.dark-theme .game-hud,
+  body.dark-theme .game-close-btn,
+  body.dark-theme .cake-action-btn,
+  body.dark-theme .prize-btn,
+  body.dark-theme .lightbox .lb-close,
+  body.dark-theme .lightbox .lb-nav{
+    background: rgba(23, 13, 29, 0.86);
+    border-color: rgba(255, 185, 218, 0.28);
+    color: #ffd3e7;
+  }
+  body.dark-theme .game-container,
+  body.dark-theme .prize-box,
+  body.dark-theme .letter-face,
+  body.dark-theme .envelope-back,
+  body.dark-theme .game-hud,
+  body.dark-theme .cake-action-btn,
+  body.dark-theme .prize-btn,
+  body.dark-theme .lightbox .lb-close,
+  body.dark-theme .lightbox .lb-nav{
+    box-shadow: 0 0 24px rgba(74, 168, 255, 0.12);
+  }
+  body.dark-theme .cake-title,
+  body.dark-theme .congrats-text,
+  body.dark-theme .prize-question,
+  body.dark-theme .prize-title,
+  body.dark-theme .game-hud,
+  body.dark-theme .game-hud .score-val,
+  body.dark-theme .prize-btn,
+  body.dark-theme .cake-action-btn,
+  body.dark-theme .game-close-btn,
+  body.dark-theme .lightbox .lb-close,
+  body.dark-theme .lightbox .lb-nav,
+  body.dark-theme .envelope-hint,
+  body.dark-theme .empty-note,
+  body.dark-theme .cake-sub,
+  body.dark-theme .modal-header h2,
+  body.dark-theme .letter-swipe-hint{
+    color: #ffd3e7;
+  }
+  body.dark-theme h1.name,
+  body.dark-theme .stat .value,
+  body.dark-theme .wish b,
+  body.dark-theme .burst-title,
+  body.dark-theme .cake-title,
+  body.dark-theme .modal-header h2,
+  body.dark-theme .prize-question,
+  body.dark-theme .prize-result .result-label,
+  body.dark-theme .surprise-trigger-btn,
+  body.dark-theme .name,
+  body.dark-theme .value,
+  body.dark-theme .critter-emoji,
+  body.dark-theme .memories-btn,
+  body.dark-theme .critter-btn,
+  body.dark-theme .music-btn,
+  body.dark-theme .theme-btn,
+  body.dark-theme .game-btn{
+    -webkit-text-stroke: 1.2px #4aa8ff !important;
+    text-stroke: 1.2px #4aa8ff !important;
   }
   *{box-sizing:border-box;}
   html,body{
@@ -209,11 +335,14 @@
     max-height:0;
     overflow:hidden;
     opacity:0;
-    transition:max-height 1s ease, opacity 1s ease, padding 1s ease;
+    transform:translateY(10px) scale(.98);
+    transform-origin:top center;
+    transition:max-height 1s ease, opacity 1s ease, padding 1s ease, transform 1s ease;
   }
   .wish.show{
     max-height:400px;
     opacity:1;
+    transform:translateY(0) scale(1);
   }
   .wish b{
     color:var(--cryo-deep);
@@ -274,6 +403,46 @@
     transform:scale(.9);
     pointer-events:none;
     transition:all .4s ease;
+  }
+  .surprise-trigger-btn:disabled{
+    opacity:0.9;
+    cursor:wait;
+    animation:countdownPulse 0.9s ease-in-out infinite;
+  }
+  button.pressed{
+    transform:translateY(1px) scale(.98);
+  }
+  .tap-burst{
+    position:fixed;
+    z-index:100;
+    pointer-events:none;
+    font-size:18px;
+    animation:tapBurst .9s ease-out forwards;
+    will-change:transform, opacity;
+  }
+  .ambient-spark{
+    position:fixed;
+    z-index:5;
+    pointer-events:none;
+    font-size:20px;
+    opacity:0;
+    animation:ambientFloat 2.2s ease-out forwards;
+    filter:drop-shadow(0 0 10px rgba(255,142,181,0.35));
+  }
+  @keyframes tapBurst{
+    0%{opacity:0; transform:translate(-50%, -50%) scale(.25);} 
+    15%{opacity:1;} 
+    70%{opacity:1;} 
+    100%{opacity:0; transform:translate(-50%, -50%) scale(1.8) translateY(-26px);} 
+  }
+  @keyframes ambientFloat{
+    0%{opacity:0; transform:translate3d(0,0,0) scale(.4);} 
+    18%{opacity:1;} 
+    100%{opacity:0; transform:translate3d(var(--dx), -80px, 0) scale(1.1);} 
+  }
+  @keyframes countdownPulse{
+    0%,100%{transform:scale(1); box-shadow:0 6px 30px rgba(255,142,181,0.3);}
+    50%{transform:scale(1.04); box-shadow:0 10px 42px rgba(74,168,255,0.35);}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -367,6 +536,80 @@
     100%{opacity:0;}
   }
 
+  .surprise-finale{
+    position:fixed;
+    inset:0;
+    z-index:9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    pointer-events:none;
+  }
+  .surprise-finale.open{
+    opacity:1;
+    animation:finaleFade .9s ease-out forwards;
+  }
+  .finale-card{
+    width:min(520px, 92vw);
+    background:rgba(255,255,255,0.84);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(255,142,181,0.6);
+    border-radius:22px;
+    padding:22px 24px;
+    box-shadow:0 18px 60px rgba(255,142,181,0.24);
+    text-align:center;
+    transform:translateY(18px) scale(.94);
+    opacity:0;
+  }
+  .surprise-finale.open .finale-card{
+    animation:finaleCardIn .9s cubic-bezier(.2,.8,.3,1) forwards;
+  }
+  .finale-title{
+    margin:0 0 10px;
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:clamp(28px,6vw,44px);
+    letter-spacing:.08em;
+    color:#b34a6e;
+    -webkit-text-stroke:1px #000000;
+    text-stroke:1px #000000;
+  }
+  .finale-text{
+    margin:0;
+    color:#6f3b59;
+    font-size:15px;
+    line-height:1.7;
+    letter-spacing:.04em;
+  }
+  .finale-heart,
+  .finale-sparkle{
+    position:fixed;
+    z-index:10;
+    pointer-events:none;
+    user-select:none;
+    opacity:0;
+  }
+  .finale-heart{font-size:24px; animation:finaleFloat 1.6s ease-out forwards;}
+  .finale-sparkle{font-size:18px; animation:finaleSparkle .9s ease-out forwards;}
+  @keyframes finaleFade{
+    from{opacity:0;} to{opacity:1;}
+  }
+  @keyframes finaleCardIn{
+    from{opacity:0; transform:translateY(18px) scale(.94);} 
+    to{opacity:1; transform:translateY(0) scale(1);} 
+  }
+  @keyframes finaleFloat{
+    0%{transform:translate3d(0,0,0) scale(.4); opacity:0;}
+    18%{opacity:1;}
+    100%{transform:translate3d(var(--dx), -120px, 0) scale(1.08); opacity:0;}
+  }
+  @keyframes finaleSparkle{
+    0%{transform:translate3d(0,0,0) scale(.35); opacity:0;}
+    25%{opacity:1;}
+    100%{transform:translate3d(var(--dx), -80px, 0) scale(1.05); opacity:0;}
+  }
+
   /* BOTTOM ACTION BAR */
   .bottom-actions{
     position:fixed;
@@ -383,7 +626,7 @@
   }
 
   /* BUTTONS */
-  .memories-btn, .critter-btn, .music-btn, .game-btn{
+  .memories-btn, .critter-btn, .music-btn, .game-btn, .theme-btn{
     display:flex;
     align-items:center;
     gap:9px;
@@ -402,12 +645,12 @@
     opacity:0;
     animation:fadeIn 1s ease 1.9s forwards;
   }
-  .memories-btn:hover, .critter-btn:hover, .music-btn:hover, .game-btn:hover{
+  .memories-btn:hover, .critter-btn:hover, .music-btn:hover, .game-btn:hover, .theme-btn:hover{
     box-shadow:0 0 30px rgba(255,142,181,0.2);
     border-color:var(--cryo);
     transform:translateY(-2px);
   }
-  .memories-btn .diamond, .critter-btn .diamond, .music-btn .diamond, .game-btn .diamond{
+  .memories-btn .diamond, .critter-btn .diamond, .music-btn .diamond, .game-btn .diamond, .theme-btn .diamond{
     width:9px;height:9px;
     background:linear-gradient(155deg, var(--cryo-bright), var(--cryo-deep));
     transform:rotate(45deg);
@@ -427,7 +670,7 @@
     50%{transform:scale(1.25);}
   }
 
-  .game-btn{
+  .theme-btn{
     position:fixed;
     top:22px;
     right:22px;
@@ -438,6 +681,12 @@
     top:22px;
     left:22px;
     z-index:12;
+  }
+  .game-btn{
+    position:static;
+    top:auto;
+    right:auto;
+    z-index:auto;
   }
 
   /* CRITTER PARADE */
@@ -651,7 +900,7 @@
   /* LIGHTBOX */
   .lightbox{
     position:fixed; inset:0;
-    background:rgba(255,240,245,0.9);
+    background:var(--overlay-bg);
     backdrop-filter:blur(6px);
     z-index:30;
     display:none;
@@ -674,7 +923,7 @@
     width:36px;height:36px;
     border-radius:50%;
     border:1px solid var(--line);
-    background:rgba(255,255,255,0.7);
+    background:var(--glass-bg);
     color:var(--frost);
     font-size:18px;
     cursor:pointer;
@@ -686,7 +935,7 @@
     width:44px;height:44px;
     border-radius:50%;
     border:1px solid var(--line);
-    background:rgba(255,255,255,0.7);
+    background:var(--glass-bg);
     color:var(--frost);
     font-size:20px;
     cursor:pointer;
@@ -700,7 +949,7 @@
   .cake-screen{
     position:fixed; inset:0;
     z-index:40;
-    background:rgba(255,240,245,0.9);
+    background:var(--overlay-bg);
     backdrop-filter:blur(4px);
     display:none;
     align-items:center;
@@ -887,7 +1136,7 @@
     align-items:center;
     gap:9px;
     padding:12px 20px;
-    background:rgba(255,255,255,0.7);
+    background:var(--glass-bg);
     backdrop-filter:blur(4px);
     border:1px solid var(--line);
     border-radius:999px;
@@ -926,7 +1175,7 @@
     align-items:center;
     justify-content:center;
     gap:14px;
-    background:rgba(255,240,245,0.95);
+    background:var(--overlay-bg);
     backdrop-filter:blur(5px);
     opacity:0;
     pointer-events:none;
@@ -977,7 +1226,7 @@
   .envelope-overlay{
     position:fixed; inset:0;
     z-index:60;
-    background:rgba(255,240,245,0.9);
+    background:var(--overlay-bg);
     backdrop-filter:blur(6px);
     display:none;
     align-items:center;
@@ -990,8 +1239,8 @@
 
   .envelope-content{
     position:relative;
-    width:min(340px, 88vw);
-    height:min(440px, 72vh);
+    width:min(420px, 92vw);
+    height:min(520px, 78vh);
   }
 
   .envelope-stage{
@@ -1007,7 +1256,7 @@
     pointer-events:none;
   }
   .envelope{
-    width:150px; height:104px;
+    width:220px; height:152px;
     position:relative;
     cursor:pointer;
     perspective:600px;
@@ -1020,10 +1269,15 @@
   .envelope-back{
     position:absolute; inset:0;
     border-radius:6px;
-    background:rgba(255,255,255,0.8);
+    background:var(--panel-bg);
     backdrop-filter:blur(4px);
     border:1px solid var(--line);
-    box-shadow:0 14px 34px rgba(255,142,181,0.1);
+    box-shadow:0 0 0 1px rgba(255,255,255,0.7), 0 0 34px rgba(255,142,181,0.95), 0 0 64px rgba(74,168,255,0.48), 0 14px 40px rgba(255,142,181,0.22);
+    animation:envelopeGlow 1.6s ease-in-out infinite alternate;
+  }
+  @keyframes envelopeGlow{
+    0%{filter:drop-shadow(0 0 8px rgba(255,142,181,0.75)) drop-shadow(0 0 18px rgba(74,168,255,0.35));}
+    100%{filter:drop-shadow(0 0 16px rgba(255,142,181,1)) drop-shadow(0 0 34px rgba(74,168,255,0.65));}
   }
   .envelope-letter-peek{
     position:absolute;
@@ -1111,7 +1365,7 @@
     -webkit-backface-visibility:hidden;
     border-radius:8px;
     border:1px solid var(--line);
-    background:rgba(255,255,255,0.85);
+    background:var(--panel-strong);
     backdrop-filter:blur(6px);
     box-shadow:0 20px 60px rgba(255,142,181,0.1);
     overflow:hidden;
@@ -1192,7 +1446,8 @@
   }
 
   @media (max-width:480px){
-    .envelope-content{height:min(420px, 68vh);}
+    .envelope-content{height:min(470px, 72vh);}
+    .envelope{width:190px; height:132px;}
     .letter-text{font-size:14.5px;}
   }
 
@@ -1201,7 +1456,7 @@
     position: fixed;
     inset: 0;
     z-index: 70;
-    background: rgba(255,240,245,0.9);
+    background: var(--overlay-bg);
     backdrop-filter: blur(6px);
     display: none;
     align-items: center;
@@ -1218,7 +1473,7 @@
     position: relative;
     width: min(500px, 90vw);
     height: min(400px, 60vh);
-    background: rgba(255,255,255,0.8);
+    background: var(--panel-bg);
     backdrop-filter: blur(4px);
     border: 1px solid var(--line);
     border-radius: 12px;
@@ -1239,7 +1494,7 @@
     color: var(--cryo-deep);
     font-size: 14px;
     letter-spacing: 0.1em;
-    background: rgba(255,255,255,0.7);
+    background: var(--glass-bg);
     padding: 6px 16px;
     border-radius: 999px;
     border: 1px solid var(--line);
@@ -1265,7 +1520,7 @@
     height: 28px;
     border-radius: 50%;
     border: 1px solid var(--line);
-    background: rgba(255,255,255,0.7);
+    background: var(--glass-bg);
     color: var(--frost);
     font-size: 14px;
     cursor: pointer;
@@ -1285,7 +1540,7 @@
     position: fixed;
     inset: 0;
     z-index: 80;
-    background: rgba(255,240,245,0.9);
+    background: var(--overlay-bg);
     backdrop-filter: blur(6px);
     display: none;
     align-items: center;
@@ -1301,7 +1556,7 @@
   .prize-box {
     position: relative;
     width: min(380px, 88vw);
-    background: rgba(255,255,255,0.85);
+    background: var(--panel-strong);
     backdrop-filter: blur(6px);
     border: 1px solid var(--gold);
     border-radius: 12px;
@@ -1436,15 +1691,16 @@
   <span class="note-icon" id="musicIcon">♪</span>
   <span id="musicLabel">Music</span>
 </button>
+
+<button class="theme-btn" id="themeBtn">
+  <span class="diamond"></span>
+  <span id="themeIcon">🌙</span>
+  <span id="themeLabel">Dark</span>
+</button>
 <audio id="bgMusic" loop preload="auto">
   <source src="birthday-song.m4a" type="audio/mp4">
   <source src="birthday-song.mp3" type="audio/mpeg">
 </audio>
-
-<button class="game-btn" id="gameBtn">
-  <span class="diamond"></span>
-  🏹 Game
-</button>
 
 <div id="stage">
   <div class="card">
@@ -1489,6 +1745,13 @@
   </div>
 </div>
 
+<div class="surprise-finale" id="surpriseFinale" aria-hidden="true">
+  <div class="finale-card">
+    <h2 class="finale-title">Sweetest Wishes ✨</h2>
+    <p class="finale-text">May your year bloom with joy, sparkle with memories, and be wrapped in all the love you deserve. Happy Birthday, Ikra 💖🎂</p>
+  </div>
+</div>
+
 <div class="bottom-actions">
   <button class="memories-btn" id="memoriesBtn">
     <span class="diamond"></span>
@@ -1513,6 +1776,11 @@
   <button class="critter-btn cake-open-btn" id="cakeOpenBtn">
     <span class="diamond"></span>
     🎂 Cake
+  </button>
+
+  <button class="game-btn" id="gameBtn">
+    <span class="diamond"></span>
+    🏹 Game
   </button>
 </div>
 
@@ -1715,6 +1983,76 @@
   }
   draw();
 
+  function triggerHapticFeedback() {
+    if (navigator && typeof navigator.vibrate === 'function') {
+      navigator.vibrate(10);
+    }
+  }
+
+  function triggerBirthdayBurst(target) {
+    if (!target || !target.getBoundingClientRect) return;
+    const rect = target.getBoundingClientRect();
+    const burstSymbols = ['✨', '🎂', '💖', '🎉'];
+    const burstCount = 6;
+
+    for (let i = 0; i < burstCount; i++) {
+      const burst = document.createElement('div');
+      burst.className = 'tap-burst';
+      burst.textContent = burstSymbols[i % burstSymbols.length];
+      burst.style.left = `${rect.left + rect.width / 2 + (Math.random() - 0.5) * 40}px`;
+      burst.style.top = `${rect.top + rect.height / 2 + (Math.random() - 0.5) * 40}px`;
+      burst.style.fontSize = `${14 + Math.random() * 8}px`;
+      document.body.appendChild(burst);
+      setTimeout(() => burst.remove(), 900);
+    }
+  }
+
+  let ambientLoopTimer = null;
+
+  function spawnAmbientSpark() {
+    const symbols = ['✨', '💖', '🌸', '🎀'];
+    const spark = document.createElement('div');
+    spark.className = 'ambient-spark';
+    spark.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    spark.style.left = `${12 + Math.random() * 76}vw`;
+    spark.style.top = `${18 + Math.random() * 52}vh`;
+    spark.style.setProperty('--dx', `${(Math.random() * 110 - 55).toFixed(1)}px`);
+    document.body.appendChild(spark);
+    setTimeout(() => spark.remove(), 2200);
+  }
+
+  function resetAmbientLoop() {
+    if (ambientLoopTimer) clearTimeout(ambientLoopTimer);
+    ambientLoopTimer = setTimeout(() => {
+      spawnAmbientSpark();
+      spawnAmbientSpark();
+      ambientLoopTimer = setTimeout(resetAmbientLoop, 4200 + Math.random() * 1400);
+    }, 5000);
+  }
+
+  document.addEventListener('pointerdown', (event) => {
+    const button = event.target.closest('button');
+    if (!button) return;
+
+    button.classList.add('pressed');
+    setTimeout(() => button.classList.remove('pressed'), 90);
+
+    if (event.pointerType === 'touch' || event.pointerType === 'pen') {
+      triggerHapticFeedback();
+    }
+
+    resetAmbientLoop();
+  }, { passive: true });
+
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('button');
+    if (!button) return;
+    triggerBirthdayBurst(button);
+    resetAmbientLoop();
+  });
+
+  resetAmbientLoop();
+
   // ---------- MUSIC ----------
   const musicBtn = document.getElementById('musicBtn');
   const musicIcon = document.getElementById('musicIcon');
@@ -1739,22 +2077,83 @@
     }
   });
 
+  // ---------- DARK THEME ----------
+  const themeBtn = document.getElementById('themeBtn');
+  const themeIcon = document.getElementById('themeIcon');
+  const themeLabel = document.getElementById('themeLabel');
+  let darkMode = false;
+
+  function setDarkStrokeColor(enabled) {
+    const strokeTargets = [
+      document.querySelector('h1.name'),
+      document.querySelector('.stat .value'),
+      document.querySelector('.wish b'),
+      document.querySelector('.burst-title'),
+      document.querySelector('.cake-title'),
+      document.querySelector('.modal-header h2')
+    ].filter(Boolean);
+
+    strokeTargets.forEach((el) => {
+      el.style.setProperty('-webkit-text-stroke', enabled ? '1.2px #4aa8ff' : '1.2px #000000');
+      el.style.setProperty('text-stroke', enabled ? '1.2px #4aa8ff' : '1.2px #000000');
+    });
+  }
+
+  function syncCritterBoards() {
+    const isDark = document.body.classList.contains('dark-theme');
+    document.querySelectorAll('.critter-board').forEach((board) => {
+      if (isDark) {
+        board.style.background = 'rgba(18, 10, 24, 0.92)';
+        board.style.borderColor = 'rgba(255, 185, 218, 0.42)';
+        board.style.color = '#4aa8ff';
+      } else {
+        board.style.background = 'rgba(255, 255, 255, 0.8)';
+        board.style.borderColor = 'var(--gold)';
+        board.style.color = 'var(--cryo-deep)';
+      }
+    });
+  }
+
+  themeBtn.addEventListener('click', ()=>{
+    darkMode = !darkMode;
+    document.body.classList.toggle('dark-theme', darkMode);
+    setDarkStrokeColor(darkMode);
+    syncCritterBoards();
+    themeIcon.textContent = darkMode ? '☀️' : '🌙';
+    themeLabel.textContent = darkMode ? 'Light' : 'Dark';
+  });
+
   // ---------- A MESSAGE FROM ASHFANTASTIC ----------
   const surpriseTriggerBtn = document.getElementById('surpriseTriggerBtn');
   const wishText = document.getElementById('wishText');
+  let surpriseCountdownTimer = null;
 
   surpriseTriggerBtn.addEventListener('click', function() {
-    // Hide the button with animation
-    surpriseTriggerBtn.classList.add('hidden');
-    
-    // Reveal the wish text
-    wishText.classList.add('show');
-    
-    // Launch the celebration effects
-    launchBalloons();
-    burst();
-    flash();
-    popTitle();
+    if (surpriseCountdownTimer) return;
+
+    let countdown = 3;
+    surpriseTriggerBtn.disabled = true;
+    surpriseTriggerBtn.textContent = `✨ Countdown ${countdown}... ✨`;
+
+    surpriseCountdownTimer = setInterval(() => {
+      countdown -= 1;
+      if (countdown > 0) {
+        surpriseTriggerBtn.textContent = `✨ Countdown ${countdown}... ✨`;
+      } else {
+        clearInterval(surpriseCountdownTimer);
+        surpriseCountdownTimer = null;
+        surpriseTriggerBtn.classList.add('hidden');
+        wishText.classList.add('show');
+        surpriseTriggerBtn.disabled = false;
+        surpriseTriggerBtn.textContent = '✨ A message from AshFantastic ✨';
+
+        launchBalloons();
+        burst();
+        flash();
+        popTitle();
+        setTimeout(triggerFinale, 600);
+      }
+    }, 1000);
   });
 
   function burst(){
@@ -1801,6 +2200,35 @@
     t.style.animation = 'burstPop 2600ms cubic-bezier(.2,.7,.3,1) forwards';
     document.body.appendChild(t);
     setTimeout(()=>t.remove(), 2700);
+  }
+
+  function triggerFinale(){
+    const finale = document.getElementById('surpriseFinale');
+    if (!finale) return;
+    finale.classList.add('open');
+    finale.setAttribute('aria-hidden', 'false');
+
+    const hearts = ['💖', '✨', '🎀', '🌸'];
+    const count = 18;
+    for (let i = 0; i < count; i++) {
+      const char = document.createElement('div');
+      const chosen = hearts[i % hearts.length];
+      const dx = (Math.random() * 220 - 110).toFixed(1);
+      const top = 30 + Math.random() * 45;
+      const left = 18 + Math.random() * 64;
+      char.className = i % 2 === 0 ? 'finale-heart' : 'finale-sparkle';
+      char.textContent = chosen;
+      char.style.left = left + 'vw';
+      char.style.top = top + 'vh';
+      char.style.setProperty('--dx', dx + 'px');
+      document.body.appendChild(char);
+      setTimeout(() => char.remove(), 1600);
+    }
+
+    setTimeout(() => {
+      finale.classList.remove('open');
+      finale.setAttribute('aria-hidden', 'true');
+    }, 2600);
   }
 
   function launchBalloons(){
@@ -1947,6 +2375,19 @@
       <span class="critter-emoji critter-right">${emoji}</span>
     `;
     document.body.appendChild(parade);
+
+    const board = parade.querySelector('.critter-board');
+    const isDark = document.body.classList.contains('dark-theme');
+    if (isDark) {
+      board.style.background = 'rgba(18, 10, 24, 0.92)';
+      board.style.borderColor = 'rgba(255, 185, 218, 0.42)';
+      board.style.color = '#4aa8ff';
+    } else {
+      board.style.background = 'rgba(255, 255, 255, 0.8)';
+      board.style.borderColor = 'var(--gold)';
+      board.style.color = 'var(--cryo-deep)';
+    }
+
     parade.addEventListener('animationend', ()=> parade.remove());
   }
   document.getElementById('catBtn').addEventListener('click', ()=> spawnParade('🐱'));
@@ -2439,6 +2880,8 @@
 
   document.getElementById('gameBtn').style.opacity = '0';
   document.getElementById('gameBtn').style.animation = 'fadeIn 1s ease 1.9s forwards';
+  document.getElementById('themeBtn').style.opacity = '0';
+  document.getElementById('themeBtn').style.animation = 'fadeIn 1s ease 1.9s forwards';
 
 </script>
 </body>
