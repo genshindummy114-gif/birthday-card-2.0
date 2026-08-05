@@ -1616,7 +1616,17 @@
     font-size: 28px;
     font-family: Georgia, serif;
     color: var(--cryo-deep);
-    margin: 16px 0 22px;
+    margin: 16px 0 10px;
+  }
+  .prize-image {
+    display: block;
+    width: min(220px, 60vw);
+    max-height: 180px;
+    margin: 0 auto 18px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    object-fit: cover;
+    box-shadow: 0 10px 28px rgba(255,142,181,0.12);
   }
   .prize-options {
     display: flex;
@@ -1940,6 +1950,7 @@
   <div class="prize-box">
     <div class="prize-title">🎁 Prize Box</div>
     <div class="prize-question" id="prizeQuestion">Will you marry me?</div>
+    <img class="prize-image" id="prizePromptImage" src="https://raw.githubusercontent.com/genshindummy114-gif/birthday-card-2.0/main/images/12990%20(1).jpg" alt="Cute surprise image">
     
     <div class="prize-options" id="prizeOptions">
       <button class="prize-btn yes" id="prizeYes">Yes 💍</button>
@@ -2643,6 +2654,7 @@
   const prizeOverlay = document.getElementById('prizeOverlay');
   const prizeQuestion = document.getElementById('prizeQuestion');
   const prizeOptions = document.getElementById('prizeOptions');
+  const prizePromptImage = document.getElementById('prizePromptImage');
   const prizeResult = document.getElementById('prizeResult');
   const resultImage = document.getElementById('resultImage');
   const resultLabel = document.getElementById('resultLabel');
@@ -2895,6 +2907,7 @@
   // ========== PRIZE BOX ==========
   function openPrizeBox() {
     prizeOptions.style.display = 'flex';
+    prizePromptImage.style.display = 'block';
     prizeResult.classList.remove('show');
     prizeResult.style.display = 'none';
     prizeQuestion.textContent = 'Will you marry me?';
@@ -2907,6 +2920,7 @@
 
   function handlePrizeAnswer(answer) {
     prizeOptions.style.display = 'none';
+    prizePromptImage.style.display = 'none';
     prizeResult.style.display = 'flex';
     
     if (answer === 'yes') {
