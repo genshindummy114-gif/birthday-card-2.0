@@ -1700,6 +1700,182 @@
     color: var(--cryo-deep);
     border-color: var(--cryo);
   }
+
+  .one-last-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(180deg, rgba(255,246,251,0.96), rgba(255,237,244,0.96));
+  }
+  .one-last-overlay.open {
+    display: flex;
+  }
+  .one-last-main {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: transparent;
+  }
+  .one-last-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(14px);
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  .one-last-glow.left {
+    top: 25%;
+    left: -8rem;
+    width: 18rem;
+    height: 18rem;
+    background: radial-gradient(circle at center, #f9f2d8 0%, #f9f2d8 40%, transparent 70%);
+  }
+  .one-last-glow.right {
+    top: -6rem;
+    right: -10rem;
+    width: 22rem;
+    height: 22rem;
+    background: radial-gradient(circle at center, #f7d7cf 0%, #f7d7cf 40%, transparent 72%);
+  }
+  .one-last-card {
+    position: relative;
+    z-index: 2;
+    width: min(460px, 100%);
+    background: #fff8fc;
+    padding: 28px 24px;
+    border-radius: 60px;
+    box-shadow: 0 20px 60px rgba(255,142,181,0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+  }
+  .one-last-title {
+    font-size: clamp(24px, 4vw, 30px);
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--cryo-deep);
+    font-weight: 700;
+    margin: 0;
+  }
+  .one-last-gift-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,224,234,0.96));
+    border-radius: 40px;
+  }
+  .one-last-gift-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+  }
+  .one-last-gift-btn:hover {
+    transform: scale(1.05);
+  }
+  .one-last-gift-btn:active {
+    transform: scale(0.95);
+  }
+  .one-last-gift-btn img {
+    display: block;
+    width: 140px;
+    height: auto;
+    object-fit: cover;
+  }
+  .one-last-hint {
+    margin: 0;
+    color: rgba(105,59,80,0.72);
+    font-size: 14px;
+  }
+  .one-last-signature {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 13px;
+    z-index: 2;
+  }
+
+  .final-surprise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 95;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .final-surprise-overlay.open {
+    display: flex;
+    opacity: 1;
+  }
+  .final-surprise-card {
+    position: relative;
+    z-index: 10;
+    max-width: 440px;
+    border-radius: 60px;
+    padding: 24px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,224,234,0.96));
+    box-shadow: 0 22px 60px rgba(255,142,181,0.18);
+    border: 1px solid rgba(255,142,181,0.35);
+    backdrop-filter: blur(6px);
+  }
+  .final-surprise-card img {
+    display: block;
+    margin: 0 auto;
+    width: min(200px, 60vw);
+    height: auto;
+    object-fit: cover;
+  }
+  .final-surprise-title {
+    margin-top: 12px;
+    color: var(--cryo-deep);
+    font-size: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 16px rgba(255,255,255,0.7);
+  }
+  .final-surprise-copy {
+    margin-top: 8px;
+    color: rgba(105, 59, 80, 0.86);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .final-surprise-replay {
+    margin-top: 18px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.72);
+    color: var(--cryo-deep);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 26px rgba(255,142,181,0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .final-surprise-replay:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(255,142,181,0.24);
+  }
   
   @media (max-width: 480px) {
     .game-container {
@@ -1962,6 +2138,34 @@
       <img id="resultImage" src="" alt="Result">
       <button class="prize-close-btn" id="prizeResultClose">Close</button>
     </div>
+  </div>
+</div>
+
+<div class="one-last-overlay" id="oneLastOverlay" aria-hidden="true">
+  <main class="one-last-main">
+    <div class="one-last-glow left"></div>
+    <div class="one-last-glow right"></div>
+
+    <div class="one-last-card">
+      <h2 class="one-last-title">One Last Thing...</h2>
+      <div class="one-last-gift-box">
+        <button class="one-last-gift-btn" id="giftBoxBtn" type="button" aria-label="Open final surprise">
+          <img src="https://birthday-v3-light-edition-demo.pages.dev/gifs/gift.gif" alt="Gift box">
+        </button>
+        <p class="one-last-hint">Tap the gift</p>
+      </div>
+    </div>
+
+    <div class="one-last-signature">@anujbuilds</div>
+  </main>
+</div>
+
+<div class="final-surprise-overlay" id="finalSurpriseOverlay" aria-hidden="true">
+  <div class="final-surprise-card">
+    <img loading="lazy" alt="surprise" src="https://birthday-v3-light-edition-demo.pages.dev/gifs/surprise.gif">
+    <p class="final-surprise-title">Lots of love for you ❤️</p>
+    <div class="final-surprise-copy">Once again, Happy Birthday! Hope you loved your surprise.</div>
+    <button class="final-surprise-replay" id="finalSurpriseReplay" type="button">Replay</button>
   </div>
 </div>
 
@@ -2661,6 +2865,10 @@
   const prizeYes = document.getElementById('prizeYes');
   const prizeNo = document.getElementById('prizeNo');
   const prizeResultClose = document.getElementById('prizeResultClose');
+  const oneLastOverlay = document.getElementById('oneLastOverlay');
+  const giftBoxBtn = document.getElementById('giftBoxBtn');
+  const finalSurpriseOverlay = document.getElementById('finalSurpriseOverlay');
+  const finalSurpriseReplay = document.getElementById('finalSurpriseReplay');
 
   let gameRunning = false;
   let gameAnimId = null;
@@ -2916,6 +3124,8 @@
 
   function closePrizeBox() {
     prizeOverlay.classList.remove('open');
+    oneLastOverlay.classList.add('open');
+    oneLastOverlay.setAttribute('aria-hidden', 'false');
   }
 
   function handlePrizeAnswer(answer) {
@@ -2945,6 +3155,25 @@
   prizeResultClose.addEventListener('click', closePrizeBox);
   prizeOverlay.addEventListener('click', (e) => {
     if (e.target === prizeOverlay) closePrizeBox();
+  });
+
+  giftBoxBtn.addEventListener('click', () => {
+    oneLastOverlay.classList.remove('open');
+    oneLastOverlay.setAttribute('aria-hidden', 'true');
+    finalSurpriseOverlay.classList.add('open');
+    finalSurpriseOverlay.setAttribute('aria-hidden', 'false');
+  });
+
+  finalSurpriseReplay.addEventListener('click', () => {
+    finalSurpriseOverlay.classList.remove('open');
+    finalSurpriseOverlay.setAttribute('aria-hidden', 'true');
+  });
+
+  finalSurpriseOverlay.addEventListener('click', (e) => {
+    if (e.target === finalSurpriseOverlay) {
+      finalSurpriseOverlay.classList.remove('open');
+      finalSurpriseOverlay.setAttribute('aria-hidden', 'true');
+    }
   });
 
   window.addEventListener('resize', () => {
