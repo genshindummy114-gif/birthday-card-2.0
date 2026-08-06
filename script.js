@@ -965,12 +965,12 @@ function handlePrizeAnswer(answer) {
     resultLabel.textContent = '💍 YES! 💍';
     resultImage.src = 'images/photos/eyesopen.jpg';
     resultImage.alt = 'Eyes open';
-    prizeQuestion.textContent = '❤️ Forever & Always ❤️';
+    prizeQuestion.textContent = '❤️ কামের বুয়া বানাইয়া রাখমু তোরে 😁 ❤️';
   } else {
     resultLabel.textContent = '😜 Maybe next time...';
     resultImage.src = 'images/photos/tongueout.jpg';
     resultImage.alt = 'Tongue out';
-    prizeQuestion.textContent = '🤪 Still love you though!';
+    prizeQuestion.textContent = 'শয়তান বেডি একটা 😒!';
   }
   
   setTimeout(() => {
